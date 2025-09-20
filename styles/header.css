@@ -1,0 +1,25 @@
+nav {
+    background-color: #1d6e86;
+}
+
+.container-fluid>a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.container-fluid span {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.navbar-nav>a {
+    color: #fff;
+    text-decoration: none;
+    font-size: .8em;
+}
+
+.navbar-nav>a:hover {
+    color: #0c2636;
+    text-decoration: underline;
+}

@@ -8,13 +8,8 @@ form {
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 500px;
-    /* evita que se vea demasiado ancho en pantallas grandes */
-    min-width: 280px;
-    /* un poco más cómodo que 250px */
-    margin: auto;
-    /* centrado */
+    min-width: 300px;
+    max-width: 600px;
 }
 
 .input-container {
@@ -26,15 +21,13 @@ form {
 
 .input-container label {
     margin-bottom: 0.5rem;
-    font-size: 1rem;
+    font-size: .8rem;
 }
 
 input {
-    font-size: 1rem;
-    padding: 0.75rem;
-    /* un poco más de espacio */
+    font-size: .875rem;
+    padding: 0.5rem;
     border-radius: 12px;
-    /* menos exagerado que 15px */
     border: 2px solid transparent;
     outline: none;
 }
@@ -46,7 +39,7 @@ input:focus {
 button {
     background-color: #269fb8;
     border: none;
-    padding: 0.75rem 1rem;
+    padding: 0.6rem;
     border-radius: 12px;
     width: 100%;
     color: #fff;
@@ -60,19 +53,10 @@ button:hover {
     cursor: pointer;
 }
 
-/* Pantallas medianas (tablets en vertical, >=768px) */
-@media screen and (min-width: 768px) {
-    form {
-        width: 70%;
-        max-width: 600px;
-    }
 
-}
-
-/* Pantallas grandes (>=1200px: iPad Pro horizontal, laptops) */
-@media screen and (min-width: 1200px) {
+/* Estilos para pantallas pequeñas (<=1024px) */
+@media screen and (max-width: 1024px) {
     form {
-        width: 50%;
-        max-width: 700px;
+        width: 80%;
     }
 }
