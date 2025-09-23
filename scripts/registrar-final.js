@@ -31,20 +31,13 @@ form.addEventListener('submit', (e) => {
       alert('Por favor, complete todos los campos requeridos para cliente.');
       return;
     }
-    userData.apellido = clienteApellido.value;
-    userData.fechaNac = clienteFechaNac.value;
-    userData.tipoDocumento = clienteTipoDocumento.value;
-    userData.numDocumento = clienteNumDocumento.value;
-  } else {
+  } else if (userData.role === 'aerolinea') {
     if (!aerolineaDescripcion.value || !aerolineaWebsite.value) {
       alert('Por favor, complete todos los campos requeridos para aerolínea.');
       return;
     }
-    userData.descripcion = aerolineaDescripcion.value;
-    userData.website = aerolineaWebsite.value;
   }
 
-  localStorage.setItem('userData', JSON.stringify(userData));
   alert('Registro completado con éxito.');
   window.location.href = 'iniciar-sesion.html';
 });

@@ -14,7 +14,6 @@ function loadHeader() {
         userInfo.style.display = 'flex';
         sesionContainer.style.display = 'none';
         nickname.textContent = userData.nickname;
-        console.log('Usuario autenticado:', userData.nickname);
       } else {
         sesionContainer.style.display = 'flex';
         userInfo.style.display = 'none';
