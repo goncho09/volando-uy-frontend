@@ -1,25 +1,195 @@
 nav {
+    position: relative;
     background-color: #1d6e86;
+    color: #fff;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
 }
 
-.container-fluid>a {
+.nav-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+/* Logo */
+.nav-top h1 {
+    font-size: 1.2rem;
+    margin: 0;
+    user-select: none;
+}
+
+/* Botón hamburguesa */
+.navbar-toggler {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none;
+    /* desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    padding: 0;
+}
+
+.navbar-toggler span {
+    display: block;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+/* Contenedor que se colapsa en móvil */
+.nav-collapse {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    justify-content: space-between;
+
+}
+
+/* Input de búsqueda */
+.search-container {
+    flex: .8;
+    display: flex;
+    justify-content: center;
+    margin-left: 4rem;
+}
+
+.sesion {
+    flex: .4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+
+
+.search-bar {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    border: 2px solid transparent;
+}
+
+.user-info,
+.sesion {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-bar:focus {
+    border: 2px solid #269fb8;
+}
+
+/* User info */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
     color: #fff;
+}
+
+.user-info p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.user-info img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info a#cerrar-sesion {
+    margin-left: 10px;
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
-.container-fluid span {
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #fff;
-}
-
-.navbar-nav>a {
-    color: #fff;
-    text-decoration: none;
-    font-size: .8em;
-}
-
-.navbar-nav>a:hover {
+.user-info a#cerrar-sesion:hover {
+    cursor: pointer;
     color: #0c2636;
-    text-decoration: underline;
+}
+
+.sesion a:hover {
+    text-decoration: none;
+    color: #0c2636;
+    transition: color 0.2s ease;
+}
+
+@media (max-width: 768px) {
+    .nav-top {
+        width: 100%;
+    }
+
+    /* Mostrar hamburguesa */
+    .navbar-toggler {
+        display: flex;
+    }
+
+    /* Colapsable oculto por defecto */
+    .nav-collapse {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        /* asegura que todo quede centrado */
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #1d6e86;
+        padding: 10px 0;
+        z-index: 1000;
+    }
+
+    .search-container {
+        width: 90%;
+        /* ya estaba */
+        display: flex;
+        justify-content: center;
+        /* centramos input */
+    }
+
+    .search-bar {
+        width: 100%;
+        /* ocupa todo el 90% del contenedor */
+        max-width: 400px;
+        /* opcional, evita que quede gigante en tablets */
+    }
+
+    .nav-collapse.active {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .search-container,
+    .user-info {
+        width: 90%;
+        margin: 0 auto 10px auto;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .user-info a#cerrar-sesion {
+        margin-left: 0;
+        margin-top: 5px;
+    }
 }

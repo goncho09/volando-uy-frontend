@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="styles/forms.css">
+    <link rel="stylesheet" href="styles/globals.css">
+    <script src="scripts/registrar-final.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <form id="form">
+            <h1 style="text-align: center;font-size: 1.6rem;font-weight: 600;margin:0 0 1rem 0;">Registrar</h1>
+
+            <div id="aerolinea-inputs" style="display: none;">
+                <input type="text" id="aerolinea-desc" placeholder="Ingrese la descripción de la aerolínea">
+                <input type="text" id="aerolinea-web" placeholder="Ingrese la página web de la aerolínea">
+            </div>
+
+            <div id="cliente-inputs" style="display: none;">
+                <input type="text" id="cliente-apellido" placeholder="Ingrese su apellido">
+                <input type="date" id="cliente-fecha-nac" placeholder="Ingrese su fecha de nacimiento">
+                <input type="text" id="cliente-nacionalidad" placeholder="Ingrese su nacionalidad">
+                <select id="cliente-tipo-doc" aria-label="Seleccione tipo de documento">
+                    <option value="" disabled selected>Seleccione tipo de documento</option>
+                    <option value="DNI">DNI</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                    <option value="Cédula de identidad">Cédula de identidad</option>
+                </select>
+                <input type="text" id="cliente-num-doc" placeholder="Ingrese número de documento">
+            </div>
+
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+
+
+</body>
+
+</html>

@@ -5,27 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/globals.css">
+    <script src="scripts/header.js" defer></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="" style="outline: none;" href="index.html">
-                Volando.uy
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+    <nav>
+        <div class="nav-top">
+            <h1>Volando.uy</h1>
+            <button class="navbar-toggler" aria-label="Toggle menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav
-                        d-flex justify-content-end w-100 align-items-center">
-                    <a class="nav-link" style="outline: none;" href="/vuelo.html">Vuelos</a>
-                    <a class="nav-link" style="outline: none;" href="/reservas.html">Reservas</a>
-                    <a class="nav-link" style="outline: none;" href="/paquete.html">Paquetes</a>
-                    <a class="nav-link" style="outline: none;" href="/ruta-de-vuelo.html">Rutas de vuelo</a>
-                    <a class="nav-link" style="outline: none;" href="/iniciar-sesion.html">Iniciar sesión</a>
-                </div>
+        </div>
+
+        <div class="nav-collapse">
+            <div class="search-container">
+                <input type="text" placeholder="Buscar origen,destino,paquete,aerolinea..." class="search-bar" />
+            </div>
+
+            <div class="user-info" id="user-info">
+                <img src="assets/user-image.png" id="user-image" />
+                <p id="nickname">Nickname</p>
+                <a href="#" id="cerrar-sesion" onclick="cerrarSesion()">Cerrar sesión</a>
+            </div>
+
+            <div class="sesion" id="sesion">
+                <a href="iniciar-sesion.html">Iniciar sesión</a>
+                <p>|</p>
+                <a href="registrar-usuario.html">Registrarme</a>
             </div>
         </div>
     </nav>
