@@ -2,7 +2,7 @@ const userData = JSON.parse(localStorage.getItem('userData'));
 const form = document.getElementById('form');
 
 const aerolineaDescripcion = document.getElementById('aerolinea-desc');
-const aerolineaWebsite = document.getElementById('aerolinea-webs');
+const aerolineaWebsite = document.getElementById('aerolinea-web');
 
 const clienteApellido = document.getElementById('cliente-apellido');
 const clienteFechaNac = document.getElementById('cliente-fecha-nac');
@@ -21,23 +21,32 @@ document.getElementById('aerolinea-inputs').style.display =
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  if (userData.role === 'cliente') {
-    if (
-      !clienteApellido.value ||
-      !clienteFechaNac.value ||
-      !clienteTipoDocumento.value ||
-      !clienteNumDocumento.value
-    ) {
-      alert('Por favor, complete todos los campos requeridos para cliente.');
+  try {
+    if (userData.role === 'cliente') {
+      if (
+        !clienteApellido.value ||
+        !clienteFechaNac.value ||
+        !clienteTipoDocumento.value ||
+        !clienteNumDocumento.value
+      ) {
+        alert('Por favor, complete todos los campos requeridos para cliente.');
+        return;
+      }
+    } else if (userData.role === 'aerolinea') {
+      if (!aerolineaDescripcion.value || !aerolineaWebsite.value) {
+        alert(
+          'Por favor, complete todos los campos requeridos para aerolínea.'
+        );
+        return;
+      }
+    } else {
+      alert('Rol de usuario no válido.');
       return;
     }
-  } else if (userData.role === 'aerolinea') {
-    if (!aerolineaDescripcion.value || !aerolineaWebsite.value) {
-      alert('Por favor, complete todos los campos requeridos para aerolínea.');
-      return;
-    }
-  }
 
-  alert('Registro completado con éxito.');
-  window.location.href = 'iniciar-sesion.html';
+    alert('Registro completado con éxito.');
+    window.location.href = 'iniciar-sesion.html';
+  } catch (error) {
+    console.error('Error durante el registro:', error);
+  }
 });
