@@ -6,10 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruta de vuelo</title>
     <script src="scripts/header.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <header id="header"></header>
+    <header id="header" class="mb-4"></header>
+
+    <div class="container-fluid mt-4">
+        <div class="row d-flex align-items-stretch gx-4 gy-4 shadow">
+
+            <aside class="col-md-3 d-flex flex-column">
+                <div class="p-3 mb-4 shadow rounded bg-light flex-fill">
+                    <h5>Mi Perfil</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Nueva Ruta</a></li>
+                        <li><a href="#">Nuevo Vuelo</a></li>
+                    </ul>
+                </div>
+                <div class="p-3 mb-4 shadow rounded bg-light flex-fill">
+                    <h5>Categorias</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Nacionales</a></li>
+                        <li><a href="#">Internacionales</a></li>
+                        <li><a href="#">Europa</a></li>
+                        <li><a href="#">América</a></li>
+                        <li><a href="#">Exclusivos</a></li>
+                        <li><a href="#">Temporada</a></li>
+                        <li><a href="#">Cortos</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Columna central más grande -->
+            <main class="col-md-6 d-flex flex-column">
+                <div class="card shadow rounded mb-4 flex-fill">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="assets/rio.jpg" class="img-fluid rounded-start" alt="Rio de Janeiro">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h4 class="card-title">EjemploRutaa</h4>
+                                <p class="card-text"><strong>Montevideo - Río de Janeiro</strong></p>
+                                <p>Descripción:</p>
+                                <p>Origen:</p>
+                                <p>Hora:</p>
+                                <p>Costo Turista:</p>
+                                <p>Costo Ejecutivo:</p>
+                                <p>Costo equipaje extra:</p>
+                                <p>Fecha de alta:</p>
+                                <p>Estado:</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+
+            <aside class="col-md-3 d-flex flex-column">
+                <div class="p-3 mb-4 shadow rounded bg-light flex-fill">
+                    <h5>Vuelos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">estoEsUnVuelo</a></li>
+                        <li><a href="#">yEstoTambien</a></li>
+                    </ul>
+                    <a href="#">Agregar vuelo</a>
+                </div>
+                <div class="p-3 mb-4 shadow rounded bg-light flex-fill">
+                    <h5>Pa</h5>
+                    <p><a href="#">Aca va un paquete xd</a></p>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
 </body>
 
 </html>
