@@ -140,7 +140,7 @@ nav {
     transition: color 0.2s ease;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .nav-top {
         width: 100%;
     }
@@ -155,7 +155,6 @@ nav {
         display: none;
         flex-direction: column;
         align-items: center;
-        /* asegura que todo quede centrado */
         width: 100%;
         position: absolute;
         top: 100%;
@@ -167,17 +166,13 @@ nav {
 
     .search-container {
         width: 90%;
-        /* ya estaba */
         display: flex;
         justify-content: center;
-        /* centramos input */
     }
 
     .search-bar {
         width: 100%;
-        /* ocupa todo el 90% del contenedor */
-        max-width: 400px;
-        /* opcional, evita que quede gigante en tablets */
+        max-width: 500px;
     }
 
     .nav-collapse.active {
