@@ -12,7 +12,10 @@
 <body>
     <nav>
         <div class="nav-top">
-            <h1>Volando.uy</h1>
+            <a href="index.html">
+                <h1>Volando.uy</h1>
+            </a>
+
             <button class="navbar-toggler" aria-label="Toggle menu" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -26,14 +29,16 @@
             </div>
 
             <div class="user-info" id="user-info">
-                <img src="assets/user-image.png" id="user-image" />
-                <p id="nickname">Nickname</p>
+                <a style="display: flex;align-items: center;gap: 0.5rem;" href="perfil.html">
+                    <img src="assets/user-image.png" id="user-image" />
+                    <p id="nickname">Nickname</p>
+                </a>
                 <a href="#" id="cerrar-sesion" onclick="cerrarSesion()">Cerrar sesión</a>
             </div>
 
             <div class="sesion" id="sesion">
                 <a href="iniciar-sesion.html">Iniciar sesión</a>
-                <p style="font-size: 1.3rem;">|</p>
+                <div style="border-left: 2px solid #fff;height: 20px;"></div>
                 <a href="registrar-usuario.html">Registrarme</a>
             </div>
         </div>
