@@ -2,84 +2,103 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruta de vuelo</title>
-    <script src="scripts/header.js" defer></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruta de vuelo</title>
+  <script src="scripts/header.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <header id="header" class="mb-4"></header>
+  <header id="header" class="mb-4"></header>
 
-    <div class="container-fluid mt-4">
-        <div class="row d-flex align-items-stretch gx-4 gy-4 shadow">
+  <main class="container my-5">
 
-            <aside class="col-md-3 d-flex flex-column">
-                <div class="p-3 mb-4 shadow rounded bg-light flex-fill">
-                    <h5>Mi Perfil</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Nueva Ruta</a></li>
-                        <li><a href="#">Nuevo Vuelo</a></li>
-                    </ul>
-                </div>
-                <div class="p-3 mb-4 shadow rounded bg-light flex-fill">
-                    <h5>Categorias</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Nacionales</a></li>
-                        <li><a href="#">Internacionales</a></li>
-                        <li><a href="#">Europa</a></li>
-                        <li><a href="#">América</a></li>
-                        <li><a href="#">Exclusivos</a></li>
-                        <li><a href="#">Temporada</a></li>
-                        <li><a href="#">Cortos</a></li>
-                    </ul>
-                </div>
-            </aside>
-
-            <!-- Columna central más grande -->
-            <main class="col-md-6 d-flex flex-column">
-                <div class="card shadow rounded mb-4 flex-fill">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="assets/rio.jpg" class="img-fluid rounded-start" alt="Rio de Janeiro">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h4 class="card-title">EjemploRutaa</h4>
-                                <p class="card-text"><strong>Montevideo - Río de Janeiro</strong></p>
-                                <p>Descripción:</p>
-                                <p>Origen:</p>
-                                <p>Hora:</p>
-                                <p>Costo Turista:</p>
-                                <p>Costo Ejecutivo:</p>
-                                <p>Costo equipaje extra:</p>
-                                <p>Fecha de alta:</p>
-                                <p>Estado:</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-
-
-            <aside class="col-md-3 d-flex flex-column">
-                <div class="p-3 mb-4 shadow rounded bg-light flex-fill">
-                    <h5>Vuelos</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">estoEsUnVuelo</a></li>
-                        <li><a href="#">yEstoTambien</a></li>
-                    </ul>
-                    <a href="#">Agregar vuelo</a>
-                </div>
-                <div class="p-3 mb-4 shadow rounded bg-light flex-fill">
-                    <h5>Pa</h5>
-                    <p><a href="#">Aca va un paquete xd</a></p>
-                </div>
-            </aside>
-
+    <div class="row">
+      <aside class="col-md-3 mb-4">
+        <div class="card mb-3 shadow">
+        <p class="card-header fw-bold">MI PERFIL</p>
+          <div class="card-body p-3">
+            <ul class="list-unstyled mb-0">
+              <li><a href="#" class="text-decoration-none">Nueva Ruta</a></li>
+              <li><a href="#" class="text-decoration-none">Nuevo Vuelo</a></li>
+            </ul>
+          </div>
         </div>
+
+        <div class="card shadow">
+          <div class="card-header fw-bold">CATEGORÍAS</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="#" class="text-decoration-none">Nacionales</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none">Internacionales</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none">Europa</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none">América</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none">Exclusivos</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none">Temporada</a></li>
+            <li class="list-group-item"><a href="#" class="text-decoration-none">Cortos</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="col-md-9">
+        <div class="card mb-5 border-0">
+          <div class="row g-0">
+            <div class="col-md-5">
+              <img src="assets/rio.jpg" alt="Rio de Janeiro" class="img-fluid h-100 rounded-start" style="height:100%; object-fit:cover;">
+            </div>
+            <div class="col-md-7 p-4">
+              <h5 class="fw-bold">Ruta de vuelo</h5>
+              <p><strong>Montevideo - Río de Janeiro</strong></p>
+              <p>Aca va una descripcion, no se que poner jaajaaaa</p>
+              <p>Origen: Montevideo</p>
+              <p>Hora: 14:00</p>
+              <p>Costo Turista: $300</p>
+              <p>Costo Ejecutivo: $600</p>
+              <p>Costo equipaje extra: $50</p>
+              <p>Fecha de alta: 27/09/2025</p>
+              <p>Estado: Disponible</p>
+            </div>
+          </div>
+        </div>
+
+        <section class="vuelos">
+          <h5 class="fw-bold mb-4">VUELOS</h5>
+          <div class="row g-4">
+            <div class="col-md-4">
+              <div class="card shadow h-100">
+                <img src="assets/vuelo1.jpg" alt="Paquete 1" class="card-img-top img-fluid">
+                <div class="card-body">
+                  <h6 class="card-title">Vuelo 1</h6>
+                  <button type="button" class="btn btn-outline-dark">Ver vuelo</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card shadow h-100">
+                <img src="assets/vuelo2.jpg" alt="Vuelo 2" class="card-img-top img-fluid">
+                <div class="card-body">
+                  <h6 class="card-title">Vuelo 2</h6>
+                  <button type="button" class="btn btn-outline-dark">Ver vuelo</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card shadow h-100">
+                <img src="assets/vuelo3.jpg" alt="Vuelo 3" class="card-img-top img-fluid">
+                <div class="card-body">
+                  <h6 class="card-title">Vuelo 3</h6>
+                  <button type="button" class="btn btn-outline-dark">Ver vuelo</button>                
+                </div>
+              </div>
+            </div>
+            <div class="mt-4">
+                <button type="button" class="btn btn-outline-dark">Agregar Vuelo</button>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
+  </main>
 
 </body>
 
