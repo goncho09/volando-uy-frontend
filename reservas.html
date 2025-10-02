@@ -6,7 +6,6 @@
     <title>Reserva de Vuelo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/globals.css">
-    <link rel="stylesheet" href="styles/buttons.css">
     <script src="scripts/header.js" defer></script>
     <link rel="icon" href="assets/logo.webp" type="image/webp">
 </head>
@@ -42,123 +41,180 @@
                 </div>
             </aside>
 
-            <!-- Formulario de reserva -->
+            <!-- Principal-->
             <div class="col-md-9">
                 <div class="card mb-4 border-0 shadow">
                     <div class="card-header fw-bold">
                         <h4 class="mb-0">Reserva de Vuelo</h4>
                     </div>
                     <div class="card-body p-4">
-                        <!-- Vuelo seleccionado -->
-                        <div class="row mb-4">
-                            <div class="col-md-4">
-                                <img src="assets/vuelo1.jpg" alt="Vuelo ZL1502001" class="img-fluid rounded">
-                            </div>
-                            <div class="col-md-8">
-                                <h5>ZL1502001 - Montevideo a Río de Janeiro</h5>
-                                <p><strong>Aerolínea:</strong> ZuluFly</p>
-                                <p><strong>Fecha:</strong> 25/10/2024</p>
-                                <p><strong>Hora:</strong> 12:50</p>
-                                <p><strong>Duración:</strong> 2 h 30 min</p>
+
+                        <!-- Selección de aerolínea -->
+                        <div id="step-aerolinea">
+                            <h5 class="mb-4">Selecciona una aerolínea</h5>
+                            <div class="row g-4" id="aerolineas-container">
                             </div>
                         </div>
 
-                        <!-- Formulario de reserva -->
-                        <form id="form-reserva">
-                            <!-- Datos de los pasajeros -->
-                            <div class="mb-4">
-                                <h5 class="mb-3">Datos de los Pasajeros</h5>
-                                
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="cantidad-pasajes" class="form-label">Cantidad de pasajes</label>
-                                        <select class="form-select" id="cantidad-pasajes">
-                                            <option value="1">1 pasajero</option>
-                                            <option value="2">2 pasajeros</option>
-                                            <option value="3">3 pasajeros</option>
-                                            <option value="4">4 pasajeros</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="tipo-asiento" class="form-label">Tipo de asiento</label>
-                                        <select class="form-select" id="tipo-asiento">
-                                            <option value="turista">Turista - USD 75</option>
-                                            <option value="ejecutivo">Ejecutivo - USD 190</option>
-                                        </select>
-                                    </div>
-                                </div>
+                        <!-- Selección de ruta -->
+                        <div id="step-ruta" class="d-none">
+                            <h5 class="mb-4">Rutas de <span id="nombre-aerolinea"></span></h5>
+                            <button type="button" class="btn btn-outline-secondary mb-3" onclick="volverAAerolineas()">
+                                ← Cambiar aerolínea
+                            </button>
+                            <div class="row g-4" id="rutas-container">
+                            </div>
+                        </div>
 
-                                <div class="mb-3">
-                                    <label for="equipaje-extra" class="form-label">Unidades de equipaje extra</label>
-                                    <input type="number" class="form-control" id="equipaje-extra" min="0" max="5" value="0">
-                                    <div class="form-text">Costo por unidad: USD 30</div>
-                                </div>
+                        <!-- Selección de vuelo -->
+                        <div id="step-vuelo" class="d-none">
+                            <h5 class="mb-4">Vuelos disponibles</h5>
+                            <div class="d-flex gap-2 mb-3">
+                                <button type="button" class="btn btn-outline-secondary" onclick="volverARutas()">
+                                    ← Cambiar ruta
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary" onclick="volverAAerolineas()">
+                                    ← Cambiar aerolínea
+                                </button>
+                            </div>
+                            <div class="row g-4" id="vuelos-container">
+                            </div>
+                        </div>
 
-                                <!-- Nombres de pasajeros -->
-                                <div id="nombres-pasajeros" class="mt-3">
-                                    <div class="pasajero mb-3">
-                                        <label class="form-label">Pasajero 1</label>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" placeholder="Nombre" required>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" placeholder="Apellido" required>
+                        <!-- Formulario -->
+                        <div id="step-datos" class="d-none">
+                            <h5 class="mb-4">Completa los datos de tu reserva</h5>
+                            <div class="d-flex gap-2 mb-3">
+                                <button type="button" class="btn btn-outline-secondary" onclick="volverAVuelos()">
+                                    ← Cambiar vuelo
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary" onclick="volverARutas()">
+                                    ← Cambiar ruta
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary" onclick="volverAAerolineas()">
+                                    ← Cambiar aerolínea
+                                </button>
+                            </div>
+
+                            <!-- Resumen -->
+                            <div class="card mb-4 bg-light">
+                                <div class="card-body">
+                                    <h6>Resumen de su selección:</h6>
+                                    <p class="mb-1"><strong>Aerolínea:</strong> <span id="resumen-aerolinea"></span></p>
+                                    <p class="mb-1"><strong>Ruta:</strong> <span id="resumen-ruta"></span></p>
+                                    <p class="mb-0"><strong>Vuelo:</strong> <span id="resumen-vuelo"></span></p>
+                                </div>
+                            </div>
+
+                            <!-- Info del vuelo seleccionado -->
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <img src="" alt="Vuelo" class="img-fluid rounded" id="imagen-vuelo">
+                                </div>
+                                <div class="col-md-8">
+                                    <h5 id="detalles-vuelo"></h5>
+                                    <p><strong>Fecha:</strong> <span id="detalle-fecha"></span></p>
+                                    <p><strong>Hora:</strong> <span id="detalle-hora"></span></p>
+                                    <p><strong>Duración:</strong> <span id="detalle-duracion"></span></p>
+                                    <p><strong>Asientos disponibles:</strong> <span id="detalle-asientos"></span></p>
+                                </div>
+                            </div>
+
+                            <!-- Formulario de reserva -->
+                            <form id="form-reserva">
+                                <div class="mb-4">
+                                    <h5 class="mb-3">Datos de los Pasajeros</h5>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="cantidad-pasajes" class="form-label">Cantidad de pasajes</label>
+                                            <select class="form-select" id="cantidad-pasajes">
+                                                <option value="1">1 pasajero</option>
+                                                <option value="2">2 pasajeros</option>
+                                                <option value="3">3 pasajeros</option>
+                                                <option value="4">4 pasajeros</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="tipo-asiento" class="form-label">Tipo de asiento</label>
+                                            <select class="form-select" id="tipo-asiento">
+                                                <option value="turista">Turista - USD 75</option>
+                                                <option value="ejecutivo">Ejecutivo - USD 190</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="equipaje-extra" class="form-label">Unidades de equipaje extra</label>
+                                        <input type="number" class="form-control" id="equipaje-extra" min="0" max="5" value="0">
+                                        <div class="form-text">Costo por unidad: USD 30</div>
+                                    </div>
+
+                                    <!-- Nombres de pasajeros -->
+                                    <div id="nombres-pasajeros" class="mt-3">
+                                        <div class="pasajero mb-3">
+                                            <label class="form-label">Pasajero 1</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" placeholder="Nombre" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" placeholder="Apellido" required>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Método de pago -->
-                            <div class="mb-4">
-                                <h5 class="mb-3">Método de Pago</h5>
-                                
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="metodo-pago" id="pago-general" checked>
-                                    <label class="form-check-label" for="pago-general">
-                                        Pago general
-                                    </label>
-                                </div>
-                                
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="metodo-pago" id="pago-paquete">
-                                    <label class="form-check-label" for="pago-paquete">
-                                        Pago con paquete
-                                    </label>
-                                </div>
-                                
-                                <!-- Si se selecciona pago con paquete -->
-                                <div id="selector-paquete" class="mt-3" style="display: none;">
-                                    <label for="paquete" class="form-label">Selecciona un paquete</label>
-                                    <select class="form-select" id="paquete">
-                                        <option value="">-- Selecciona un paquete --</option>
-                                        <option value="paquete1">Paquete Sudamérica (3 rutas disponibles)</option>
-                                        <option value="paquete2">Paquete Europa (2 rutas disponibles)</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Resumen de costos -->
-                            <div class="mb-4 p-3 bg-light rounded">
-                                <h5 class="mb-3">Resumen de Costos</h5>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p><strong>Pasajes:</strong> <span id="costo-pasajes">USD 75</span></p>
-                                        <p><strong>Equipaje extra:</strong> <span id="costo-equipaje">USD 0</span></p>
+                                <!-- Pago -->
+                                <div class="mb-4">
+                                    <h5 class="mb-3">Método de Pago</h5>
+                                    
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="metodo-pago" id="pago-general" checked>
+                                        <label class="form-check-label" for="pago-general">
+                                            Pago general
+                                        </label>
                                     </div>
-                                    <div class="col-md-6">
-                                        <p><strong>Total:</strong> <span id="total" class="fw-bold">USD 75</span></p>
+                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="metodo-pago" id="pago-paquete">
+                                        <label class="form-check-label" for="pago-paquete">
+                                            Pago con paquete
+                                        </label>
+                                    </div>
+                                    
+                                    <!-- Pago con paquete -->
+                                    <div id="selector-paquete" class="mt-3 d-none">
+                                        <label for="paquete" class="form-label">Selecciona un paquete</label>
+                                        <select class="form-select" id="paquete">
+                                            <option value="">-- Selecciona un paquete --</option>
+                                            <option value="paquete1">Paquete Sudamérica (3 rutas disponibles)</option>
+                                            <option value="paquete2">Paquete Europa (2 rutas disponibles)</option>
+                                        </select>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Botones de acción -->
-                            <div class="d-flex justify-content-between">
-                                <button type="button" onclick="window.location.href='vuelo.html'">Cancelar</button>
-                                <button type="submit">Confirmar Reserva</button>
-                            </div>
-                        </form>
+                                <!-- Resumen de costos -->
+                                <div class="mb-4 p-3 bg-light rounded">
+                                    <h5 class="mb-3">Resumen de Costos</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p><strong>Pasajes:</strong> <span id="costo-pasajes">USD 75</span></p>
+                                            <p><strong>Equipaje extra:</strong> <span id="costo-equipaje">USD 0</span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><strong>Total:</strong> <span id="total" class="fw-bold">USD 75</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Botones de acción -->
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" onclick="volverAVuelos()">← Volver</button>
+                                    <button type="submit">Confirmar Reserva</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
