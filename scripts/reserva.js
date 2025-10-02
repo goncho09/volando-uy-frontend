@@ -318,7 +318,7 @@ function inicializarFormulario() {
             return;
         }
         
-        // Si se seleccionó pago con paquete, validar que se eligió un paquete
+        // Validar que se eligió un paquete
         if (pagoPaquete.checked) {
             const paqueteSelect = document.getElementById('paquete');
             if (!paqueteSelect.value) {
@@ -329,61 +329,47 @@ function inicializarFormulario() {
             paqueteSelect.classList.remove('is-invalid');
         }
         
-        // Simular confirmación de reserva
-        alert('¡Reserva confirmada exitosamente! Serás redirigido a tus reservas.');
+        alert('¡Reserva confirmada exitosamente!');
         window.location.href = 'reservas.html';
     });
     
-    // Inicializar costos al cargar la página
     actualizarCostos();
 }
 
-// Funciones para volver a pasos anteriores LIMPIANDO el estado
+// Limpiar el estado
 function volverAAerolineas() {
-    // Resetear estado
     estadoReserva = { aerolinea: null, ruta: null, vuelo: null };
     
-    // Ocultar todos los pasos
     document.querySelectorAll('[id^="step-"]').forEach(step => {
         step.classList.add('d-none');
     });
     
-    // Mostrar solo paso de aerolíneas
     document.getElementById('step-aerolinea').classList.remove('d-none');
     
-    // Recargar aerolíneas
     cargarAerolineas();
 }
 
 function volverARutas() {
-    // Resetear solo ruta y vuelo
     estadoReserva.ruta = null;
     estadoReserva.vuelo = null;
     
-    // Ocultar todos los pasos
     document.querySelectorAll('[id^="step-"]').forEach(step => {
         step.classList.add('d-none');
     });
     
-    // Mostrar solo paso de rutas
     document.getElementById('step-ruta').classList.remove('d-none');
     
-    // Recargar rutas de la aerolínea actual
     cargarRutas(estadoReserva.aerolinea);
 }
 
 function volverAVuelos() {
-    // Resetear solo vuelo
     estadoReserva.vuelo = null;
     
-    // Ocultar todos los pasos
     document.querySelectorAll('[id^="step-"]').forEach(step => {
         step.classList.add('d-none');
     });
     
-    // Mostrar solo paso de vuelos
     document.getElementById('step-vuelo').classList.remove('d-none');
     
-    // Recargar vuelos de la ruta actual
     cargarVuelos(estadoReserva.ruta);
 }
