@@ -1,5 +1,5 @@
 function loadHeader() {
-  fetch('header/header.html')
+  fetch('header/headerIndex.html')
     .then((res) => res.text())
     .then((data) => {
       const container = document.getElementById('header');
@@ -39,7 +39,7 @@ function setupDropdowns() {
 
 function cerrarSesion() {
   localStorage.removeItem('userData');
-  window.location.href = '../index.html';
+  window.location.href = 'index.html';
 }
 
 document.addEventListener('DOMContentLoaded', loadHeader);
