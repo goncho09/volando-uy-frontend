@@ -14,14 +14,32 @@ function setupDropdowns() {
 }
 
 function loadHeader() {
-  fetch('header/header.html')
-    .then((res) => res.text())
+  const container = document.getElementById('header');
+  if (!container) return;
+
+  // Detectar la profundidad de la página
+  const pathDepth =
+    window.location.pathname.split('/').filter((part) => part).length - 1;
+
+  // Construir la ruta al header.html relativa a la ubicación del HTML actual
+  let fetchPath = '';
+  for (let i = 0; i < pathDepth; i++) {
+    fetchPath += '../';
+  }
+  fetchPath += 'header/header.html';
+
+  fetch(fetchPath)
+    .then((res) => {
+      if (!res.ok) throw new Error('Header no encontrado');
+      return res.text();
+    })
     .then((data) => {
-      const container = document.getElementById('header');
       container.innerHTML = data;
 
+      // Inicializar dropdowns (función tuya)
       setupDropdowns();
 
+      // Mostrar usuario o sesión
       const userInfo = document.getElementById('user-info');
       const nickname = document.getElementById('nickname');
       const sesionContainer = document.getElementById('sesion');
@@ -35,6 +53,9 @@ function loadHeader() {
         sesionContainer.style.display = 'flex';
         userInfo.style.display = 'none';
       }
+    })
+    .catch((err) => {
+      console.error('Error cargando header:', err);
     });
 }
 
