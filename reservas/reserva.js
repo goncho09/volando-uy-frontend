@@ -4,14 +4,14 @@ const datosReserva = {
       id: 'zulufly',
       nombre: 'ZuluFly',
       descripcion: 'Aerolínea premium con destinos internacionales',
-      imagen: '../assets/aerolinea1.png',
+      imagen: '/assets/aerolinea1.png',
       rutas: [
         {
           id: 'zl1502',
           codigo: 'ZL1502',
           nombre: 'Montevideo - Río de Janeiro',
           descripcion: 'Vuelo directo a las playas de Brasil',
-          imagen: '../assets/rio.jpg',
+          imagen: '/assets/rio.jpg',
           vuelos: [
             {
               id: 'zl1502001',
@@ -20,7 +20,7 @@ const datosReserva = {
               hora: '12:50',
               duracion: '2 h 30 min',
               asientosDisponibles: 28,
-              imagen: '../assets/vuelo1.jpg',
+              imagen: '/assets/vuelo1.jpg',
             },
             {
               id: 'zl1502002',
@@ -29,7 +29,7 @@ const datosReserva = {
               hora: '18:30',
               duracion: '2 h 30 min',
               asientosDisponibles: 15,
-              imagen: '../assets/vuelo2.jpg',
+              imagen: '/assets/vuelo2.jpg',
             },
           ],
         },
@@ -38,7 +38,7 @@ const datosReserva = {
           codigo: 'ZL0801',
           nombre: 'Montevideo - Buenos Aires',
           descripcion: 'Conectando las capitales del Río de la Plata',
-          imagen: '../assets/vuelo2.jpg',
+          imagen: '/assets/vuelo2.jpg',
           vuelos: [
             {
               id: 'zl0801001',
@@ -47,7 +47,7 @@ const datosReserva = {
               hora: '08:00',
               duracion: '45 min',
               asientosDisponibles: 50,
-              imagen: '../assets/vuelo3.jpg',
+              imagen: '/assets/vuelo3.jpg',
             },
           ],
         },
@@ -57,14 +57,14 @@ const datosReserva = {
       id: 'skywings',
       nombre: 'SkyWings',
       descripcion: 'Vuelos nacionales e internacionales económicos',
-      imagen: '../assets/aerolinea2.png',
+      imagen: '/assets/aerolinea2.png',
       rutas: [
         {
           id: 'sw2001',
           codigo: 'SW2001',
           nombre: 'Montevideo - Santiago',
           descripcion: 'Descubre los Andes chilenos',
-          imagen: '../assets/vuelo3.jpg',
+          imagen: '/assets/vuelo3.jpg',
           vuelos: [
             {
               id: 'sw2001001',
@@ -73,7 +73,7 @@ const datosReserva = {
               hora: '14:15',
               duracion: '3 h 00 min',
               asientosDisponibles: 40,
-              imagen: '../assets/vuelo1.jpg',
+              imagen: '/assets/vuelo1.jpg',
             },
           ],
         },
