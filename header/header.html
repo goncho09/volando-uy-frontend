@@ -11,108 +11,154 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 
     <script src="header.js" defer></script>
-    <link rel="stylesheet" href="/styles/globals.css">
+    <link rel="stylesheet" href="../styles/globals.css">
 </head>
 
 <body>
 
     <div class="flex items-center flex-col justify-between p-2 space-y-2 w-full header-top md:flex-row md:space-y-0"
         style="background-color: var(--azul-oscuro);">
-        <a href="/index.html" class="text-3xl font-bold uppercase">Volando.uy</a>
+        <a href="../index.html" class="text-3xl font-bold uppercase">Volando.uy</a>
+
         <div class="flex flex-col items-center space-x-3 md:flex-row" id="user-info">
-            <a class="flex items-center " href="/perfil/perfil.html">
-                <img src="/assets/user-image.png" id="user-image" class="w-12 h-12 rounded-full" />
+            <a class="flex items-center" href="../perfil/perfil.html">
+                <img src="../assets/user-image.png" id="user-image" class="w-12 h-12 rounded-full" />
                 <p class="m-0" id="nickname">Nickname</p>
             </a>
             <a href="#" id="cerrar-sesion" onclick="cerrarSesion()">
-                <p class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">Cerrar sesión</p>
+                <p class="decoration-[var(--celeste-claro)] underline-offset-5 m-0 hover:underline">Cerrar sesión</p>
             </a>
         </div>
 
         <div class="flex space-x-2" id="sesion">
-            <a href="/login/login.html">
-                <p class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">Iniciar sesión</p>
+            <a href="../login/login.html">
+                <p class="decoration-[var(--celeste-claro)] underline-offset-5 m-0 hover:underline">Iniciar sesión</p>
             </a>
             <div class="border-l border-1 h-6"></div>
-            <a href="/registrar/usuario.html">
-                <p class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                    Registrarme</p>
+            <a href="../registrar/usuario.html">
+                <p class="decoration-[var(--celeste-claro)] underline-offset-5 m-0 hover:underline">Registrarme</p>
             </a>
         </div>
-
     </div>
 
-    <div
-        class="flex items-center justify-center w-full !space-x-2 self-center text-white border-b border-white p-2 focus-within:border-[var(--celeste-claro)] duration-200 ease-in md:w-1/2">
+    <!-- Barra de búsqueda -->
+    <div class="flex items-center justify-center w-full !space-x-2 self-center text-white border-b border-white p-2
+            focus-within:border-[var(--celeste-claro)] duration-200 ease-in md:w-1/2">
         <button><i class="fa-solid fa-magnifying-glass text-xl"></i></button>
         <input type="text" placeholder="Buscar origen, destino, paquete, aerolínea..."
-            class="outline-none border-0 bg-transparent w-[95%]   text-lg" />
+            class="outline-none border-0 bg-transparent w-[95%] text-lg" />
     </div>
 
+    <!-- Navbar -->
     <nav class="navbar shadow-sm flex items-center justify-center">
         <!-- Navbar Start (Hamburguesa solo en móvil) -->
-        <div class="navbar-start !w-full  flex md:!hidden">
-            <div class="dropdown ">
+        <div class="navbar-start !w-full flex md:!hidden">
+            <div class="dropdown">
                 <div tabindex="0" role="button" class="flex">
                     <i class="fa-solid fa-bars text-xl text-center"></i>
                 </div>
                 <ul tabindex="0"
-                    class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box !w-72  bg-[var(--azul-oscuro)] text-white">
+                    class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box !w-72 bg-[var(--azul-oscuro)] text-white">
+
+                    <!-- Vuelos -->
                     <li>
                         <details>
                             <summary>Vuelos</summary>
                             <ul class="p-2 bg-[var(--azul-oscuro)]">
-                                <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a href="/vuelo/crear.html">Crear vuelo</a>
+                                <li>
+                                    <a href="../vuelo/crear.html">
+                                        <p
+                                            class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                            Crear vuelo</p>
+                                    </a>
                                 </li>
-                                <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a href="/vuelo/vuelo.html">Ver vuelos</a>
+                                <li>
+                                    <a href="../vuelo/vuelo.html">
+                                        <p
+                                            class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                            Ver vuelos</p>
+                                    </a>
                                 </li>
                             </ul>
                         </details>
                     </li>
+
+                    <!-- Paquetes -->
                     <li>
                         <details>
                             <summary>Paquetes</summary>
                             <ul class="p-2 bg-[var(--azul-oscuro)]">
-                                <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a href="/paquete/crear.html">Crear paquete</a>
+                                <li>
+                                    <a href="../paquete/crear.html">
+                                        <p
+                                            class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                            Crear paquete</p>
+                                    </a>
                                 </li>
-                                <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a href="/paquete/paquete.html">Ver paquetes</a>
+                                <li>
+                                    <a href="../paquete/paquete.html">
+                                        <p
+                                            class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                            Ver paquetes</p>
+                                    </a>
                                 </li>
-                                <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a href="/paquete/ruta-en-paquete.html">Agregar ruta a paquete</a>
+                                <li>
+                                    <a href="../paquete/ruta-en-paquete.html">
+                                        <p
+                                            class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                            Agregar ruta a paquete</p>
+                                    </a>
                                 </li>
                             </ul>
                         </details>
                     </li>
+
+                    <!-- Rutas de vuelo -->
                     <li>
                         <details>
                             <summary>Rutas de vuelo</summary>
                             <ul class="p-2 bg-[var(--azul-oscuro)]">
-                                <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a href="/ruta-de-vuelo/crear.html"">Crear ruta</a>
+                                <li>
+                                    <a href="../ruta-de-vuelo/crear.html">
+                                        <p
+                                            class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                            Crear ruta</p>
+                                    </a>
                                 </li>
-                                <li class=" decoration-[var(--celeste-claro)] underline-offset-5 m-0 hover:underline ">
-                                    <a href=" /ruta-de-vuelo/ruta-de-vuelo.html">Ver rutas</a>
+                                <li>
+                                    <a href="../ruta-de-vuelo/ruta-de-vuelo.html">
+                                        <p
+                                            class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                            Ver rutas</p>
+                                    </a>
                                 </li>
                             </ul>
                         </details>
                     </li>
+
+                    <!-- Reservas -->
                     <li>
                         <details>
                             <summary>Reservas</summary>
                             <ul class="p-2 bg-[var(--azul-oscuro)]">
-                                <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a href="/reservas/reservas.html">Crear reserva</a>
+                                <li>
+                                    <a href="../reservas/reservas.html">
+                                        <p
+                                            class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                            Crear reserva</p>
+                                    </a>
                                 </li>
-                                <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a href="/reservas/reservas.html">Ver reservas</a>
+                                <li>
+                                    <a href="../reservas/reservas.html">
+                                        <p
+                                            class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                            Ver reservas</p>
+                                    </a>
                                 </li>
                             </ul>
                         </details>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -120,64 +166,102 @@
         <!-- Navbar Center (solo escritorio) -->
         <div class="flex w-full items-center justify-center hidden md:flex" id="navbar-center">
             <ul class="menu menu-horizontal flex m-0 text-white">
+
+                <!-- Vuelos -->
                 <li>
                     <details>
                         <summary>Vuelos</summary>
                         <ul class="p-2 w-32 bg-[var(--azul-oscuro)]">
-                            <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                <a href="/vuelo/crear.html">Crear vuelo</a>
+                            <li>
+                                <a href="../vuelo/crear.html">
+                                    <p class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                        Crear vuelo</p>
+                                </a>
                             </li>
-                            <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline "><a
-                                    href="/vuelo/vuelo.html">Ver vuelos</a>
+                            <li>
+                                <a href="../vuelo/vuelo.html">
+                                    <p class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                        Ver vuelos</p>
+                                </a>
                             </li>
                         </ul>
                     </details>
                 </li>
+
+                <!-- Paquetes -->
                 <li>
                     <details>
                         <summary>Paquetes</summary>
                         <ul class="p-2 w-32 bg-[var(--azul-oscuro)]">
-                            <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                <a href="/paquete/crear.html">Crear paquete</a>
+                            <li>
+                                <a href="../paquete/crear.html">
+                                    <p class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                        Crear paquete</p>
+                                </a>
                             </li>
-                            <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline "><a
-                                    href="/paquete/paquete.html">Ver
-                                    paquetes</a>
+                            <li>
+                                <a href="../paquete/paquete.html">
+                                    <p class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                        Ver paquetes</p>
+                                </a>
                             </li>
-                            <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                <a href="/paquete/ruta-en-paquete.html">Agregar ruta a paquete</a>
+                            <li>
+                                <a href="../paquete/ruta-en-paquete.html">
+                                    <p class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                        Agregar ruta a paquete</p>
+                                </a>
                             </li>
                         </ul>
                     </details>
                 </li>
+
+                <!-- Rutas de vuelo -->
                 <li>
                     <details>
                         <summary>Rutas de vuelo</summary>
                         <ul class="p-2 w-32 bg-[var(--azul-oscuro)]">
-                            <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                <a href="/ruta-de-vuelo/crear.html"">Crear ruta</a>
+                            <li>
+                                <a href="../ruta-de-vuelo/crear.html">
+                                    <p class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                        Crear ruta</p>
+                                </a>
                             </li>
-                            <li class=" decoration-[var(--celeste-claro)] underline-offset-5 m-0 hover:underline "><a
-                                    href=" /ruta-de-vuelo/ruta-de-vuelo.html">Ver rutas</a>
+                            <li>
+                                <a href="../ruta-de-vuelo/ruta-de-vuelo.html">
+                                    <p class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                        Ver rutas</p>
+                                </a>
                             </li>
                         </ul>
                     </details>
                 </li>
+
+                <!-- Reservas -->
                 <li>
                     <details>
                         <summary>Reservas</summary>
                         <ul class="p-2 w-32 bg-[var(--azul-oscuro)]">
-                            <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                <a href="/reservas/reservas.html">Crear reserva</a>
+                            <li>
+                                <a href="../reservas/reservas.html">
+                                    <p class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                        Crear reserva</p>
+                                </a>
                             </li>
-                            <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline "><a
-                                    href="/reservas/reservas.html">Ver reservas</a></li>
+                            <li>
+                                <a href="../reservas/reservas.html">
+                                    <p class="m-0 decoration-[var(--celeste-claro)] underline-offset-5 hover:underline">
+                                        Ver reservas</p>
+                                </a>
+                            </li>
                         </ul>
                     </details>
                 </li>
+
             </ul>
         </div>
     </nav>
+
+
 </body>
 
 </html>

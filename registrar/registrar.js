@@ -36,5 +36,5 @@ form.addEventListener('submit', function (event) {
     })
   );
 
-  window.location.href = '/registrar/final.html';
+  window.location.href = 'final.html';
 });

@@ -45,7 +45,7 @@ form.addEventListener('submit', (e) => {
     }
 
     alert('Registro completado con éxito.');
-    window.location.href = '/login/login.html';
+    window.location.href = '../login/login.html';
   } catch (error) {
     console.error('Error durante el registro:', error);
   }
