@@ -1,9 +1,26 @@
+// Hacer que se cierre un <details> al abrir otro
+function setupDropdowns() {
+  const allDetails = document.querySelectorAll('nav details');
+
+  allDetails.forEach((detail) => {
+    detail.addEventListener('toggle', (e) => {
+      if (detail.open) {
+        allDetails.forEach((other) => {
+          if (other !== detail) other.open = false;
+        });
+      }
+    });
+  });
+}
+
 function loadHeader() {
-  fetch('header.html')
+  fetch('/header/header.html')
     .then((res) => res.text())
     .then((data) => {
       const container = document.getElementById('header');
       container.innerHTML = data;
+
+      setupDropdowns();
 
       const userInfo = document.getElementById('user-info');
       const nickname = document.getElementById('nickname');
@@ -28,7 +45,7 @@ function toggleMenu() {
 
 function cerrarSesion() {
   localStorage.removeItem('userData');
-  window.location.href = 'index.html';
+  window.location.href = '/index.html';
 }
 
 // Ejecutar al cargar la página

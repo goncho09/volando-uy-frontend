@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+:root {
+    --azul-oscuro: #0c2636;
+    --azul-medio: #12445d;
+    --azul-claro: #1d6e86;
+    --celeste: #269fb8;
+    --celeste-claro: #2bc8c8;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -20,3 +28,22 @@ button {
     outline: none;
 }
 
+summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+}
+
+/* Firefox */
+summary::-moz-list-bullet {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+}
+
+/* Chrome, Safari, Edge */
+summary::-webkit-details-marker {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+}

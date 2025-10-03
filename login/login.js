@@ -17,5 +17,5 @@ form.addEventListener('submit', function (event) {
     })
   );
 
-  window.location.replace('./index.html');
+  window.location.replace('/index.html');
 });

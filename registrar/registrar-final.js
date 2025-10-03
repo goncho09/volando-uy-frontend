@@ -10,7 +10,7 @@ const clienteTipoDocumento = document.getElementById('cliente-tipo-doc');
 const clienteNumDocumento = document.getElementById('cliente-num-doc');
 
 if (!userData || !userData.role) {
-  window.location.href = 'registrar-usuario.html';
+  window.location.href = '/pages/signup/registrar-usuario.html';
 }
 
 document.getElementById('cliente-inputs').style.display =
@@ -45,7 +45,7 @@ form.addEventListener('submit', (e) => {
     }
 
     alert('Registro completado con éxito.');
-    window.location.href = 'iniciar-sesion.html';
+    window.location.href = '/login/login.html';
   } catch (error) {
     console.error('Error durante el registro:', error);
   }
