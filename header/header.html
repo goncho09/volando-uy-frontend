@@ -10,18 +10,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 
-    <script src="./scripts/header.js" defer></script>
-    <link rel="stylesheet" href="styles/globals.css">
+    <script src="header.js" defer></script>
+    <link rel="stylesheet" href="../styles/globals.css">
 </head>
 
 <body>
 
     <div class="flex items-center flex-col justify-between p-2 space-y-2 w-full header-top md:flex-row md:space-y-0"
         style="background-color: var(--azul-oscuro);">
-        <a href="/index.html" class="text-3xl font-bold uppercase">Volando.uy</a>
+        <a href="../index.html" class="text-3xl font-bold uppercase">Volando.uy</a>
         <div class="flex flex-col items-center space-x-3 md:flex-row" id="user-info">
-            <a class="flex items-center " href="/perfil/perfil.html">
-                <img src="/assets/user-image.png" id="user-image" class="w-12 h-12 rounded-full" />
+            <a class="flex items-center " href="../perfil/perfil.html">
+                <img src="../assets/user-image.png" id="user-image" class="w-12 h-12 rounded-full" />
                 <p class="m-0" id="nickname">Nickname</p>
             </a>
             <a href="#" id="cerrar-sesion" onclick="cerrarSesion()">
@@ -30,11 +30,11 @@
         </div>
 
         <div class="flex space-x-2" id="sesion">
-            <a href="/login/login.html">
+            <a href="../login/login.html">
                 <p class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">Iniciar sesión</p>
             </a>
             <div class="border-l border-1 h-6"></div>
-            <a href="/registrar/usuario.html">
+            <a href="../registrar/usuario.html">
                 <p class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
                     Registrarme</p>
             </a>
@@ -63,11 +63,10 @@
                             <summary>Vuelos</summary>
                             <ul class="p-2 bg-[var(--azul-oscuro)]">
                                 <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a>Crear vuelo</a>
+                                    <a href="../vuelo/crear.html">Crear vuelo</a>
                                 </li>
                                 <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a href="/vuelo/vuelo.html">Ver
-                                        vuelos</a>
+                                    <a href="../vuelo/vuelo.html">Ver vuelos</a>
                                 </li>
                             </ul>
                         </details>
@@ -77,14 +76,13 @@
                             <summary>Paquetes</summary>
                             <ul class="p-2 bg-[var(--azul-oscuro)]">
                                 <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a>Crear paquete</a>
+                                    <a href="../paquete/crear.html">Crear paquete</a>
                                 </li>
                                 <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a href="/paquete/paquete.html">Ver
-                                        paquetes</a>
+                                    <a href="../paquete/paquete.html">Ver paquetes</a>
                                 </li>
                                 <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a>Agregar ruta a paquete</a>
+                                    <a href="../paquete/ruta-en-paquete.html">Agregar ruta a paquete</a>
                                 </li>
                             </ul>
                         </details>
@@ -94,10 +92,10 @@
                             <summary>Rutas de vuelo</summary>
                             <ul class="p-2 bg-[var(--azul-oscuro)]">
                                 <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a>Crear ruta</a>
+                                    <a href="../ruta-de-vuelo/crear.html">Crear ruta</a>
                                 </li>
                                 <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a href="/ruta-de-vuelo/ruta-de-vuelo.html">Ver rutas</a>
+                                    <a href="../ruta-de-vuelo/ruta-de-vuelo.html">Ver rutas</a>
                                 </li>
                             </ul>
                         </details>
@@ -107,11 +105,10 @@
                             <summary>Reservas</summary>
                             <ul class="p-2 bg-[var(--azul-oscuro)]">
                                 <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a>Crear reserva</a>
+                                    <a href="../reservas/reservas.html">Crear reserva</a>
                                 </li>
                                 <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                    <a href="/reservas/reservas.html">Ver
-                                        reservas</a>
+                                    <a href="../reservas/reservas.html">Ver reservas</a>
                                 </li>
                             </ul>
                         </details>
@@ -128,10 +125,10 @@
                         <summary>Vuelos</summary>
                         <ul class="p-2 w-32 bg-[var(--azul-oscuro)]">
                             <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                <a>Crear vuelo</a>
+                                <a href="../vuelo/crear.html">Crear vuelo</a>
                             </li>
                             <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline "><a
-                                    href="/vuelo/vuelo.html">Ver vuelos</a>
+                                    href="../vuelo/vuelo.html">Ver vuelos</a>
                             </li>
                         </ul>
                     </details>
@@ -141,14 +138,14 @@
                         <summary>Paquetes</summary>
                         <ul class="p-2 w-32 bg-[var(--azul-oscuro)]">
                             <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                <a>Crear paquete</a>
+                                <a href="../paquete/crear.html">Crear paquete</a>
                             </li>
                             <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline "><a
-                                    href="/paquete/paquete.html">Ver
+                                    href="../paquete/paquete.html">Ver
                                     paquetes</a>
                             </li>
                             <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                <a>Agregar ruta a paquete</a>
+                                <a href="../paquete/ruta-en-paquete.html">Agregar ruta a paquete</a>
                             </li>
                         </ul>
                     </details>
@@ -158,11 +155,10 @@
                         <summary>Rutas de vuelo</summary>
                         <ul class="p-2 w-32 bg-[var(--azul-oscuro)]">
                             <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                <a>Crear ruta</a>
+                                <a href="../ruta-de-vuelo/crear.html">Crear ruta</a>
                             </li>
                             <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline "><a
-                                    href="/ruta-de-vuelo/ruta-de-vuelo.html">Ver
-                                    rutas</a></li>
+                                    href="../ruta-de-vuelo/ruta-de-vuelo.html">Ver rutas</a></li>
                         </ul>
                     </details>
                 </li>
@@ -171,11 +167,10 @@
                         <summary>Reservas</summary>
                         <ul class="p-2 w-32 bg-[var(--azul-oscuro)]">
                             <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline ">
-                                <a>Crear reserva</a>
+                                <a href="../reservas/reservas.html">Crear reserva</a>
                             </li>
                             <li class="decoration-[var(--celeste-claro)] underline-offset-5  m-0 hover:underline "><a
-                                    href="/reservas/reservas.html">Ver
-                                    reservas</a></li>
+                                    href="../reservas/reservas.html">Ver reservas</a></li>
                         </ul>
                     </details>
                 </li>
