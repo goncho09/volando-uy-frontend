@@ -14,7 +14,7 @@ function setupDropdowns() {
 }
 
 function loadHeader() {
-  fetch('../header/header.html')
+  fetch('header/header.html')
     .then((res) => res.text())
     .then((data) => {
       const container = document.getElementById('header');
