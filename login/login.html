@@ -6,20 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volando.uy | Iniciar sesión</title>
 
-    <link rel="stylesheet" href="../styles/forms.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="../styles/globals.css">
     <script src="login.js" defer></script>
 </head>
 
-<body style="overflow: hidden;">
-    <div class="container">
-        <form id="login-form">
-            <h1 style="text-align: center;font-size: 1.6rem;font-weight: 600;">Iniciar sesión</h1>
-            <input type="email" id="email" placeholder="Ingrese su correo electrónico" required>
-            <input type="password" id="password" placeholder="Ingrese su contraseña" required>
-            <button type="submit">Iniciar sesión</button>
-            <p style="text-align: center; margin-top: 1rem;">¿No tienes una cuenta? <a href="../registrar/usuario.html"
-                    style="color: #007BFF; text-decoration: none;">Regístrate</a></p>
+<body>
+    <div class=" h-screen flex justify-center items-center bg-[var(--azul-oscuro)]">
+        <form id="login-form"
+            class="flex flex-col items-center gap-4 py-6  rounded-lg shadow-lg bg-white w-[85%] md:w-128 ">
+            <h1 class="text-center text-3xl font-semibold text-[var(--azul-oscuro)]">Iniciar sesión</h1>
+            <div
+                class="flex w-[90%] md:w-2/3 items-center border-b border-gray-300 py-2 space-x-3 focus-within:border-[var(--azul-oscuro)]">
+                <i class="fa fa-envelope icon text-[var(--azul-oscuro)]"></i>
+                <input type="email" id="email" placeholder="Ingrese su correo electrónico" required
+                    class="flex-grow outline-none">
+            </div>
+            <div
+                class="flex w-[90%] md:w-2/3 items-center border-b border-gray-300 py-2 space-x-3 focus-within:border-[var(--azul-oscuro)]">
+                <i class="fa fa-lock icon text-[var(--azul-oscuro)]"></i>
+                <input type="password" id="password" placeholder="Ingrese su contraseña" required
+                    class="flex-grow outline-none">
+            </div>
+            <button type="submit"
+                class="hover:bg-[var(--azul-claro)] w-2/3 text-white py-2 rounded-lg duration-400 bg-[var(--azul-oscuro)]">Iniciar
+                sesión</button>
+
+            <div class="flex items-center space-x-1">
+                <p class="text-center">¿No tienes una cuenta? </p>
+                <a href=" ../registrar/usuario.html" class="">
+                    <p class="hover:text-[var(--azul-claro)] hover:underline m-0">Regístrate</p>
+                </a>
+            </div>
+
         </form>
     </div>
 </body>
