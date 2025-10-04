@@ -90,155 +90,130 @@ let estadoReserva = {
 
 // Inicializar datos
 document.addEventListener('DOMContentLoaded', function () {
-  cargarAerolineas();
+  inicializarSelectores();
   inicializarFormulario();
 });
 
-function cargarAerolineas() {
-  const container = document.getElementById('aerolineas-container');
-  if (!container) return;
+function inicializarSelectores() {
+  const selectAerolinea = document.getElementById('select-aerolinea');
+  const selectRuta = document.getElementById('select-ruta');
+  const selectVuelo = document.getElementById('select-vuelo');
+  const btnReservar = document.getElementById('btn-reservar');
 
-  container.innerHTML = '';
+  if (!selectAerolinea) return;
 
+  // Cargar aerolíneas
   datosReserva.aerolineas.forEach((aerolinea) => {
-    const col = document.createElement('div');
-    col.className = 'col-md-6';
-    col.innerHTML = `
-            <div class="card shadow h-100">
-                <img src="${aerolinea.imagen}" alt="${aerolinea.nombre}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">${aerolinea.nombre}</h5>
-                    <p class="card-text">${aerolinea.descripcion}</p>
-                    <button type="button" onclick="seleccionarAerolinea('${aerolinea.id}')">Seleccionar Aerolínea</button>
-                </div>
-            </div>
-        `;
-    container.appendChild(col);
+    const option = document.createElement('option');
+    option.value = aerolinea.id;
+    option.textContent = aerolinea.nombre;
+    selectAerolinea.appendChild(option);
+  });
+
+  // Evento cambio aerolínea
+  selectAerolinea.addEventListener('change', function () {
+    const aerolineaId = this.value;
+    
+    // Resetear selects dependientes
+    selectRuta.innerHTML = '<option value="">Selecciona una ruta</option>';
+    selectVuelo.innerHTML = '<option value="">Selecciona un vuelo</option>';
+    selectRuta.disabled = true;
+    selectVuelo.disabled = true;
+    btnReservar.disabled = true;
+
+    if (aerolineaId) {
+      const aerolinea = datosReserva.aerolineas.find(a => a.id === aerolineaId);
+      estadoReserva.aerolinea = aerolinea;
+      selectRuta.disabled = false;
+
+      // Cargar rutas
+      aerolinea.rutas.forEach((ruta) => {
+        const option = document.createElement('option');
+        option.value = ruta.id;
+        option.textContent = `${ruta.codigo} - ${ruta.nombre}`;
+        selectRuta.appendChild(option);
+      });
+    } else {
+      estadoReserva.aerolinea = null;
+    }
+  });
+
+  // Evento cambio ruta
+  selectRuta.addEventListener('change', function () {
+    const rutaId = this.value;
+    
+    // Resetear select de vuelos
+    selectVuelo.innerHTML = '<option value="">Selecciona un vuelo</option>';
+    selectVuelo.disabled = true;
+    btnReservar.disabled = true;
+
+    if (rutaId && estadoReserva.aerolinea) {
+      const ruta = estadoReserva.aerolinea.rutas.find(r => r.id === rutaId);
+      estadoReserva.ruta = ruta;
+      selectVuelo.disabled = false;
+
+      // Cargar vuelos
+      ruta.vuelos.forEach((vuelo) => {
+        const option = document.createElement('option');
+        option.value = vuelo.id;
+        option.textContent = `${vuelo.codigo} - ${vuelo.fecha} ${vuelo.hora}`;
+        selectVuelo.appendChild(option);
+      });
+    } else {
+      estadoReserva.ruta = null;
+    }
+  });
+
+  // Evento cambio vuelo
+  selectVuelo.addEventListener('change', function () {
+    const vueloId = this.value;
+
+    if (vueloId && estadoReserva.ruta) {
+      const vuelo = estadoReserva.ruta.vuelos.find(v => v.id === vueloId);
+      estadoReserva.vuelo = vuelo;
+      btnReservar.disabled = false;
+    } else {
+      estadoReserva.vuelo = null;
+      btnReservar.disabled = true;
+    }
+  });
+
+  // Evento botón reservar
+  btnReservar.addEventListener('click', function () {
+    if (estadoReserva.vuelo) {
+      mostrarFormularioReserva();
+    }
   });
 }
 
-// Seleccionar aerolínea
-function seleccionarAerolinea(aerolineaId) {
-  const aerolinea = datosReserva.aerolineas.find((a) => a.id === aerolineaId);
-  estadoReserva.aerolinea = aerolinea;
-
-  // ocultar paso de aerolínea
-  document.getElementById('step-aerolinea').classList.add('d-none');
-  document.getElementById('step-ruta').classList.remove('d-none');
-
-  // mostrar aerolínea seleccionada
-  document.getElementById('nombre-aerolinea').textContent = aerolinea.nombre;
-  document.getElementById('resumen-aerolinea').textContent = aerolinea.nombre;
-
-  cargarRutas(aerolinea);
-}
-
-// Cargar rutas de la aerolínea seleccionada
-function cargarRutas(aerolinea) {
-  const container = document.getElementById('rutas-container');
-  container.innerHTML = '';
-
-  aerolinea.rutas.forEach((ruta) => {
-    const col = document.createElement('div');
-    col.className = 'col-md-6';
-    col.innerHTML = `
-            <div class="card shadow h-100">
-                <img src="${ruta.imagen}" alt="${ruta.nombre}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">${ruta.nombre}</h5>
-                    <p class="card-text">${ruta.descripcion}</p>
-                    <p><strong>Código:</strong> ${ruta.codigo}</p>
-                    <button type="button" onclick="seleccionarRuta('${ruta.id}')">Seleccionar Ruta</button>
-                </div>
-            </div>
-        `;
-    container.appendChild(col);
-  });
-}
-
-// Seleccionar ruta
-function seleccionarRuta(rutaId) {
-  const ruta = estadoReserva.aerolinea.rutas.find((r) => r.id === rutaId);
-  estadoReserva.ruta = ruta;
-
-  // Mostrar paso de vuelos
-  document.getElementById('step-ruta').classList.add('d-none');
-  document.getElementById('step-vuelo').classList.remove('d-none');
-
-  // Actualizar UI
-  document.getElementById(
-    'resumen-ruta'
-  ).textContent = `${ruta.nombre} (${ruta.codigo})`;
-
-  cargarVuelos(ruta);
-}
-
-// Cargar vuelos de la ruta seleccionada
-function cargarVuelos(ruta) {
-  const container = document.getElementById('vuelos-container');
-  container.innerHTML = '';
-
-  ruta.vuelos.forEach((vuelo) => {
-    const col = document.createElement('div');
-    col.className = 'col-md-6';
-    col.innerHTML = `
-            <div class="card shadow h-100">
-                <img src="${vuelo.imagen}" alt="${vuelo.codigo}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">${vuelo.codigo}</h5>
-                    <p><strong>Fecha:</strong> ${vuelo.fecha}</p>
-                    <p><strong>Hora:</strong> ${vuelo.hora}</p>
-                    <p><strong>Duración:</strong> ${vuelo.duracion}</p>
-                    <p><strong>Asientos disponibles:</strong> ${vuelo.asientosDisponibles}</p>
-                    <button type="button" onclick="seleccionarVuelo('${vuelo.id}')">Seleccionar Vuelo</button>
-                </div>
-            </div>
-        `;
-    container.appendChild(col);
-  });
-}
-
-// Seleccionar vuelo
-function seleccionarVuelo(vueloId) {
-  const vuelo = estadoReserva.ruta.vuelos.find((v) => v.id === vueloId);
-  estadoReserva.vuelo = vuelo;
-
-  // Mostrar paso de formulario
-  document.getElementById('step-vuelo').classList.add('d-none');
-  document.getElementById('step-datos').classList.remove('d-none');
+function mostrarFormularioReserva() {
+  const vuelo = estadoReserva.vuelo;
+  const ruta = estadoReserva.ruta;
+  const aerolinea = estadoReserva.aerolinea;
 
   // Actualizar UI con datos del vuelo seleccionado
-  document.getElementById(
-    'resumen-vuelo'
-  ).textContent = `${vuelo.codigo} (${vuelo.fecha} ${vuelo.hora})`;
+  document.getElementById('resumen-aerolinea').textContent = aerolinea.nombre;
+  document.getElementById('resumen-ruta').textContent = `${ruta.nombre} (${ruta.codigo})`;
+  document.getElementById('resumen-vuelo').textContent = `${vuelo.codigo} (${vuelo.fecha} ${vuelo.hora})`;
   document.getElementById('imagen-vuelo').src = vuelo.imagen;
-  document.getElementById(
-    'detalles-vuelo'
-  ).textContent = `${vuelo.codigo} - ${estadoReserva.ruta.nombre}`;
+  document.getElementById('detalles-vuelo').textContent = `${vuelo.codigo} - ${ruta.nombre}`;
   document.getElementById('detalle-fecha').textContent = vuelo.fecha;
   document.getElementById('detalle-hora').textContent = vuelo.hora;
   document.getElementById('detalle-duracion').textContent = vuelo.duracion;
-  document.getElementById('detalle-asientos').textContent =
-    vuelo.asientosDisponibles;
+  document.getElementById('detalle-asientos').textContent = vuelo.asientosDisponibles;
+
+  // Mostrar formulario y ocultar selección
+  document.getElementById('seleccion-vuelo').classList.add('d-none');
+  document.getElementById('formulario-reserva').classList.remove('d-none');
 }
 
-// Funciones para volver a pasos anteriores
-function volverAAerolineas() {
-  document.getElementById('step-ruta').classList.add('d-none');
-  document.getElementById('step-aerolinea').classList.remove('d-none');
+function volverASeleccion() {
+  // Ocultar formulario y mostrar selección
+  document.getElementById('formulario-reserva').classList.add('d-none');
+  document.getElementById('seleccion-vuelo').classList.remove('d-none');
 }
 
-function volverARutas() {
-  document.getElementById('step-vuelo').classList.add('d-none');
-  document.getElementById('step-ruta').classList.remove('d-none');
-}
-
-function volverAVuelos() {
-  document.getElementById('step-datos').classList.add('d-none');
-  document.getElementById('step-vuelo').classList.remove('d-none');
-}
-
-// Inicializar funcionalidad del formulario
+// Inicializar funcionalidad del formulario (MANTENEMOS EL CÓDIGO ORIGINAL)
 function inicializarFormulario() {
   const cantidadPasajes = document.getElementById('cantidad-pasajes');
   const nombresPasajeros = document.getElementById('nombres-pasajeros');
@@ -297,95 +272,48 @@ function inicializarFormulario() {
     const costoEquipaje = equipaje * 30;
     const total = costoPasajes + costoEquipaje;
 
-    document.getElementById(
-      'costo-pasajes'
-    ).textContent = `USD ${costoPasajes}`;
-    document.getElementById(
-      'costo-equipaje'
-    ).textContent = `USD ${costoEquipaje}`;
+    document.getElementById('costo-pasajes').textContent = `USD ${costoPasajes}`;
+    document.getElementById('costo-equipaje').textContent = `USD ${costoEquipaje}`;
     document.getElementById('total').textContent = `USD ${total}`;
   }
 
   // Manejar envío del formulario
-  document
-    .getElementById('form-reserva')
-    .addEventListener('submit', function (e) {
-      e.preventDefault();
+  document.getElementById('form-reserva').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      // Validaciones básicas
-      const cantidad = parseInt(cantidadPasajes.value);
-      const inputsNombres =
-        nombresPasajeros.querySelectorAll('input[type="text"]');
-      let todosCompletos = true;
+    // Validaciones básicas
+    const cantidad = parseInt(cantidadPasajes.value);
+    const inputsNombres = nombresPasajeros.querySelectorAll('input[type="text"]');
+    let todosCompletos = true;
 
-      inputsNombres.forEach((input) => {
-        if (!input.value.trim()) {
-          todosCompletos = false;
-          input.classList.add('is-invalid');
-        } else {
-          input.classList.remove('is-invalid');
-        }
-      });
-
-      if (!todosCompletos) {
-        alert(
-          'Por favor, completa todos los nombres y apellidos de los pasajeros.'
-        );
-        return;
+    inputsNombres.forEach((input) => {
+      if (!input.value.trim()) {
+        todosCompletos = false;
+        input.classList.add('is-invalid');
+      } else {
+        input.classList.remove('is-invalid');
       }
-
-      // Validar que se eligió un paquete
-      if (pagoPaquete.checked) {
-        const paqueteSelect = document.getElementById('paquete');
-        if (!paqueteSelect.value) {
-          alert('Por favor, selecciona un paquete para el pago.');
-          paqueteSelect.classList.add('is-invalid');
-          return;
-        }
-        paqueteSelect.classList.remove('is-invalid');
-      }
-
-      alert('¡Reserva confirmada exitosamente!');
-      window.location.href = 'reservas.html';
     });
 
-  actualizarCostos();
-}
+    if (!todosCompletos) {
+      alert('Por favor, completa todos los nombres y apellidos de los pasajeros.');
+      return;
+    }
 
-// Limpiar el estado
-function volverAAerolineas() {
-  estadoReserva = { aerolinea: null, ruta: null, vuelo: null };
+    // Validar que se eligió un paquete
+    if (pagoPaquete.checked) {
+      const paqueteSelect = document.getElementById('paquete');
+      if (!paqueteSelect.value) {
+        alert('Por favor, selecciona un paquete para el pago.');
+        paqueteSelect.classList.add('is-invalid');
+        return;
+      }
+      paqueteSelect.classList.remove('is-invalid');
+    }
 
-  document.querySelectorAll('[id^="step-"]').forEach((step) => {
-    step.classList.add('d-none');
+    alert('¡Reserva confirmada exitosamente!');
+    window.location.href = 'reservas.html';
   });
 
-  document.getElementById('step-aerolinea').classList.remove('d-none');
-
-  cargarAerolineas();
-}
-
-function volverARutas() {
-  estadoReserva.ruta = null;
-  estadoReserva.vuelo = null;
-
-  document.querySelectorAll('[id^="step-"]').forEach((step) => {
-    step.classList.add('d-none');
-  });
-
-  document.getElementById('step-ruta').classList.remove('d-none');
-
-  cargarRutas(estadoReserva.aerolinea);
-}
-
-function volverAVuelos() {
-  estadoReserva.vuelo = null;
-
-  document.querySelectorAll('[id^="step-"]').forEach((step) => {
-    step.classList.add('d-none');
-  });
-
-  document.getElementById('step-vuelo').classList.remove('d-none');
-
-  cargarVuelos(estadoReserva.ruta);
+  actualizarCostos()
 }

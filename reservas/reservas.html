@@ -53,56 +53,53 @@
 
             <!-- Principal-->
             <div class="col-md-9">
-                <div class="card mb-4 border-0 shadow">
-                    <div class="card-header fw-bold">
-                        <h4 class="mb-0">Reserva de Vuelo</h4>
+                <!-- Selección de vuelo - NUEVO DISEÑO -->
+                <div id="seleccion-vuelo">
+                    <div class="card mb-4 border-0 shadow">
+                        <div class="card-header fw-bold">
+                            <h4 class="mb-0">Selecciona tu Vuelo</h4>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="row g-3 align-items-end">
+                                <div class="col-md-3">
+                                    <label class="form-label fw-bold">Aerolínea</label>
+                                    <select class="form-select" id="select-aerolinea">
+                                        <option value="">Selecciona una aerolínea</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-bold">Ruta</label>
+                                    <select class="form-select" id="select-ruta" disabled>
+                                        <option value="">Primero selecciona aerolínea</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label fw-bold">Vuelo</label>
+                                    <select class="form-select" id="select-vuelo" disabled>
+                                        <option value="">Primero selecciona ruta</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary w-100" id="btn-reservar" disabled style="background-color: var(--azul-oscuro); border-color: var(--azul-oscuro);">
+                                        <i class="fas fa-plane me-2"></i>Reservar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body p-4">
+                </div>
 
-                        <!-- Selección de aerolínea -->
-                        <div id="step-aerolinea">
-                            <h5 class="mb-4">Selecciona una aerolínea</h5>
-                            <div class="row g-4" id="aerolineas-container">
-                            </div>
+                <!-- Formulario de reserva (MANTENEMOS EL ACTUAL) -->
+                <div id="formulario-reserva" class="d-none">
+                    <div class="card mb-4 border-0 shadow">
+                        <div class="card-header fw-bold">
+                            <h4 class="mb-0">Reserva de Vuelo</h4>
                         </div>
-
-                        <!-- Selección de ruta -->
-                        <div id="step-ruta" class="d-none">
-                            <h5 class="mb-4">Rutas de <span id="nombre-aerolinea"></span></h5>
-                            <button type="button" class="btn btn-outline-secondary mb-3" onclick="volverAAerolineas()">
-                                ← Cambiar aerolínea
-                            </button>
-                            <div class="row g-4" id="rutas-container">
-                            </div>
-                        </div>
-
-                        <!-- Selección de vuelo -->
-                        <div id="step-vuelo" class="d-none">
-                            <h5 class="mb-4">Vuelos disponibles</h5>
+                        <div class="card-body p-4">
+                            <!-- Botones para volver a la selección -->
                             <div class="d-flex gap-2 mb-3">
-                                <button type="button" class="btn btn-outline-secondary" onclick="volverARutas()">
-                                    ← Cambiar ruta
-                                </button>
-                                <button type="button" class="btn btn-outline-secondary" onclick="volverAAerolineas()">
-                                    ← Cambiar aerolínea
-                                </button>
-                            </div>
-                            <div class="row g-4" id="vuelos-container">
-                            </div>
-                        </div>
-
-                        <!-- Formulario -->
-                        <div id="step-datos" class="d-none">
-                            <h5 class="mb-4">Completa los datos de tu reserva</h5>
-                            <div class="d-flex gap-2 mb-3">
-                                <button type="button" class="btn btn-outline-secondary" onclick="volverAVuelos()">
+                                <button type="button" class="btn btn-outline-secondary" onclick="volverASeleccion()">
                                     ← Cambiar vuelo
-                                </button>
-                                <button type="button" class="btn btn-outline-secondary" onclick="volverARutas()">
-                                    ← Cambiar ruta
-                                </button>
-                                <button type="button" class="btn btn-outline-secondary" onclick="volverAAerolineas()">
-                                    ← Cambiar aerolínea
                                 </button>
                             </div>
 
@@ -154,10 +151,8 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="equipaje-extra" class="form-label">Unidades de equipaje
-                                            extra</label>
-                                        <input type="number" class="form-control" id="equipaje-extra" min="0" max="5"
-                                            value="0">
+                                        <label for="equipaje-extra" class="form-label">Unidades de equipaje extra</label>
+                                        <input type="number" class="form-control" id="equipaje-extra" min="0" max="5" value="0">
                                         <div class="form-text">Costo por unidad: USD 30</div>
                                     </div>
 
@@ -167,12 +162,10 @@
                                             <label class="form-label">Pasajero 1</label>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <input type="text" class="form-control" placeholder="Nombre"
-                                                        required>
+                                                    <input type="text" class="form-control" placeholder="Nombre" required>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input type="text" class="form-control" placeholder="Apellido"
-                                                        required>
+                                                    <input type="text" class="form-control" placeholder="Apellido" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -184,16 +177,14 @@
                                     <h5 class="mb-3">Método de Pago</h5>
 
                                     <div class="form-check mb-2">
-                                        <input class="form-check-input" type="radio" name="metodo-pago"
-                                            id="pago-general" checked>
+                                        <input class="form-check-input" type="radio" name="metodo-pago" id="pago-general" checked>
                                         <label class="form-check-label" for="pago-general">
                                             Pago general
                                         </label>
                                     </div>
 
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="metodo-pago"
-                                            id="pago-paquete">
+                                        <input class="form-check-input" type="radio" name="metodo-pago" id="pago-paquete">
                                         <label class="form-check-label" for="pago-paquete">
                                             Pago con paquete
                                         </label>
@@ -216,20 +207,18 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <p><strong>Pasajes:</strong> <span id="costo-pasajes">USD 75</span></p>
-                                            <p><strong>Equipaje extra:</strong> <span id="costo-equipaje">USD 0</span>
-                                            </p>
+                                            <p><strong>Equipaje extra:</strong> <span id="costo-equipaje">USD 0</span></p>
                                         </div>
                                         <div class="col-md-6">
-                                            <p><strong>Total:</strong> <span id="total" class="fw-bold">USD 75</span>
-                                            </p>
+                                            <p><strong>Total:</strong> <span id="total" class="fw-bold">USD 75</span></p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Botones de acción -->
                                 <div class="d-flex justify-content-between">
-                                    <button type="button" onclick="volverAVuelos()">← Volver</button>
-                                    <button type="submit">Confirmar Reserva</button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="volverASeleccion()">← Volver</button>
+                                    <button type="submit" class="btn btn-primary" style="background-color: var(--azul-oscuro); border-color: var(--azul-oscuro);">Confirmar Reserva</button>
                                 </div>
                             </form>
                         </div>
