@@ -1,0 +1,125 @@
+<!-- solo cliente :/ -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Reserva</title>
+
+    <!-- Librerias Header -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="../header/header.js" defer></script>
+    <script src="consultar-reservas.js" defer></script>
+    <link rel="stylesheet" href="../styles/globals.css">
+</head>
+
+<body>
+    <header id="header" class="flex flex-col px-4 py-2 text-white w-[100vw] bg-[var(--azul-oscuro)]"></header>
+
+    <main class="container my-5">
+        <div class="row">
+            <!-- Barra lateral -->
+            <aside class="col-md-3 mb-4">
+                <div class="card mb-3 shadow">
+                    <p class="card-header fw-bold">MI PERFIL</p>
+                    <div class="card-body p-3">
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="../perfil/perfil.html" class="text-decoration-none">Mi Perfil</a></li>
+                            <li><a href="../reserva/crear-reserva.html" class="text-decoration-none">Reservar Vuelo</a></li>
+                            <li><a href="../paquete/paquete.html" class="text-decoration-none">Comprar Paquete</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card shadow">
+                    <div class="card-header fw-bold">CATEGORÍAS</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">Nacionales</a></li>
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">Internacionales</a></li>
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">Europa</a></li>
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">América</a></li>
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">Exclusivos</a></li>
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">Temporada</a></li>
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">Cortos</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Contenido principal -->
+            <div class="col-md-9">
+                <!-- Búsqueda para Cliente -->
+                <div class="card mb-4 border-0 shadow">
+                    <div class="card-header fw-bold">
+                        <h4 class="mb-0">Consulta de Mi Reserva</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="text-muted mb-4">Selecciona un vuelo para consultar tu reserva</p>
+                        
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">Aerolínea</label>
+                                <select class="form-select" id="cliente-aerolinea">
+                                    <option value="">Selecciona una aerolínea</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">Ruta</label>
+                                <select class="form-select" id="cliente-ruta" disabled>
+                                    <option value="">Primero selecciona aerolínea</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">Vuelo</label>
+                                <select class="form-select" id="cliente-vuelo" disabled>
+                                    <option value="">Primero selecciona ruta</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resultados para Cliente -->
+                <div id="resultado-cliente" class="d-none">
+                    <div class="card border-0 shadow">
+                        <div class="card-header fw-bold d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Mi Reserva</h5>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="volverABusqueda()">
+                                ← Nueva Búsqueda
+                            </button>
+                        </div>
+                        <div class="card-body p-4">
+                            <div id="cliente-reserva-detalle">
+                                <!-- Detalle de la reserva del cliente se cargará aquí -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sin resultados -->
+                <div id="sin-resultados" class="card border-0 shadow d-none">
+                    <div class="card-body text-center py-5">
+                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">No tienes reserva en este vuelo</h5>
+                        <p class="text-muted">No se encontró una reserva a tu nombre en el vuelo seleccionado</p>
+                        <button class="btn btn-outline-primary" onclick="volverABusqueda()">
+                            Volver a Buscar
+                        </button>
+                        <a href="../reserva/crear-reserva.html" class="btn btn-primary ms-2" style="background-color: var(--azul-oscuro); border-color: var(--azul-oscuro);">
+                            <i class="fas fa-plus me-1"></i>Crear Reserva
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
