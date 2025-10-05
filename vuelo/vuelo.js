@@ -1,3 +1,4 @@
+// Datos de prueba estáticos
 const datosConsulta = {
     aerolineas: [
         {
@@ -25,7 +26,7 @@ const datosConsulta = {
                             asientosEjecutivo: 30,
                             fechaAlta: '28/07/2024',
                             imagen: '../assets/vuelo1.jpg',
-                            tieneReserva: true // Simular que el usuario tiene reserva
+                            tieneReserva: true
                         },
                         {
                             id: 'zl1502002',
@@ -107,8 +108,9 @@ let estadoConsulta = {
     ruta: null
 };
 
-// Inicializar
+// Inicializar cuando el js esté listo
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('Inicializando consulta de vuelo...');
     inicializarSelectores();
 });
 
@@ -116,6 +118,12 @@ function inicializarSelectores() {
     const selectAerolinea = document.getElementById('select-aerolinea');
     const selectRuta = document.getElementById('select-ruta');
     const btnBuscar = document.getElementById('btn-buscar');
+    const btnVolverLista = document.getElementById('btn-volver-lista');
+
+    if (!selectAerolinea) {
+        console.error('No se encontró el elemento select-aerolinea');
+        return;
+    }
 
     // Cargar aerolíneas
     datosConsulta.aerolineas.forEach((aerolinea) => {
@@ -151,7 +159,7 @@ function inicializarSelectores() {
         }
     });
 
-    // Evento cambio ruta
+    // Cambio ruta
     selectRuta.addEventListener('change', function () {
         const rutaId = this.value;
 
@@ -165,53 +173,100 @@ function inicializarSelectores() {
         }
     });
 
-    // Evento botón buscar
+    // Botón buscar
     btnBuscar.addEventListener('click', function () {
         if (estadoConsulta.ruta) {
-            mostrarVuelos();
+            mostrarListaVuelos();
         }
+    });
+
+    // Botón volver a lista
+    btnVolverLista.addEventListener('click', function () {
+        mostrarListaVuelos();
     });
 }
 
-function mostrarVuelos() {
-    const resultadosDiv = document.getElementById('resultados-vuelos');
-    const listaVuelos = document.getElementById('lista-vuelos');
+function mostrarListaVuelos() {
+    document.getElementById('mensaje-inicial').classList.add('d-none');
+    document.getElementById('detalle-vuelo-container').classList.add('d-none');
+    
+    document.getElementById('lista-vuelos-container').classList.remove('d-none');
+    
+    document.getElementById('titulo-lista-vuelos').textContent = 
+        `Vuelos Disponibles - ${estadoConsulta.ruta.nombre}`;
 
+    const listaVuelos = document.getElementById('lista-vuelos');
     listaVuelos.innerHTML = '';
+
+    if (estadoConsulta.ruta.vuelos.length === 0) {
+        const mensaje = document.createElement('div');
+        mensaje.className = 'text-center py-5';
+        mensaje.innerHTML = `
+            <i class="fas fa-plane-slash fa-3x text-muted mb-3"></i>
+            <h5 class="text-muted">No hay vuelos disponibles</h5>
+            <p class="text-muted">No se encontraron vuelos para esta ruta</p>
+        `;
+        listaVuelos.appendChild(mensaje);
+        return;
+    }
 
     // Mostrar cada vuelo de la ruta seleccionada
     estadoConsulta.ruta.vuelos.forEach((vuelo) => {
         const vueloDiv = document.createElement('div');
-        vueloDiv.className = 'border-bottom p-4 hover-bg-light';
-        vueloDiv.style.cursor = 'pointer';
-        vueloDiv.innerHTML = `
-      <div class="row align-items-center">
-        <div class="col-md-2">
-          <img src="${vuelo.imagen}" alt="${vuelo.codigo}" class="img-fluid rounded" style="height: 80px; object-fit: cover;">
-        </div>
-        <div class="col-md-6">
-          <h6 class="fw-bold mb-1">${vuelo.codigo}</h6>
-          <p class="mb-1"><strong>Fecha:</strong> ${vuelo.fecha}</p>
-          <p class="mb-1"><strong>Hora:</strong> ${vuelo.hora} | <strong>Duración:</strong> ${vuelo.duracion}</p>
-          <p class="mb-0"><strong>Asientos disponibles:</strong> Turista: ${vuelo.asientosTurista} | Ejecutivo: ${vuelo.asientosEjecutivo}</p>
-        </div>
-        <div class="col-md-4 text-end">
-          <button class="btn btn-primary" onclick="mostrarDetalleVuelo('${vuelo.id}')" style="background-color: var(--azul-oscuro); border-color: var(--azul-oscuro);">
-            Ver Detalles
-          </button>
-        </div>
-      </div>
-    `;
+        vueloDiv.className = 'border-bottom p-4';
+        
+        const row = document.createElement('div');
+        row.className = 'row align-items-center';
+        
+        const colImg = document.createElement('div');
+        colImg.className = 'col-md-2';
+        const img = document.createElement('img');
+        img.src = vuelo.imagen;
+        img.alt = vuelo.codigo;
+        img.className = 'img-fluid rounded';
+        img.style = 'height: 80px; object-fit: cover;';
+        colImg.appendChild(img);
+        
+        const colInfo = document.createElement('div');
+        colInfo.className = 'col-md-6';
+        colInfo.innerHTML = `
+            <h6 class="fw-bold mb-1">${vuelo.codigo}</h6>
+            <p class="mb-1"><strong>Fecha:</strong> ${vuelo.fecha}</p>
+            <p class="mb-1"><strong>Hora:</strong> ${vuelo.hora} | <strong>Duración:</strong> ${vuelo.duracion}</p>
+            <p class="mb-0"><strong>Asientos disponibles:</strong> Turista: ${vuelo.asientosTurista} | Ejecutivo: ${vuelo.asientosEjecutivo}</p>
+        `;
+        
+        const colBtn = document.createElement('div');
+        colBtn.className = 'col-md-4 text-end';
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-primary';
+        btn.style = 'background-color: var(--azul-oscuro); border-color: var(--azul-oscuro);';
+        btn.textContent = 'Ver Detalles';
+        btn.onclick = function() { mostrarDetalleVuelo(vuelo.id); };
+        colBtn.appendChild(btn);
+        
+        row.appendChild(colImg);
+        row.appendChild(colInfo);
+        row.appendChild(colBtn);
+        vueloDiv.appendChild(row);
         listaVuelos.appendChild(vueloDiv);
     });
-
-    resultadosDiv.classList.remove('d-none');
 }
 
 function mostrarDetalleVuelo(vueloId) {
     const vuelo = estadoConsulta.ruta.vuelos.find(v => v.id === vueloId);
+    
+    if (!vuelo) {
+        console.error('Vuelo no encontrado:', vueloId);
+        return;
+    }
 
-    // Actualizar UI con datos del vuelo
+    document.getElementById('mensaje-inicial').classList.add('d-none');
+    document.getElementById('lista-vuelos-container').classList.add('d-none');
+    
+    document.getElementById('detalle-vuelo-container').classList.remove('d-none');
+
+    // Actualizar datos del vuelo
     document.getElementById('vuelo-imagen').src = vuelo.imagen;
     document.getElementById('vuelo-nombre').textContent = vuelo.codigo;
     document.getElementById('vuelo-aerolinea').textContent = estadoConsulta.aerolinea.nombre;
@@ -235,17 +290,8 @@ function mostrarDetalleVuelo(vueloId) {
     const infoReserva = document.getElementById('info-reserva');
     if (vuelo.tieneReserva) {
         infoReserva.classList.remove('d-none');
-        document.getElementById('nombre-usuario').textContent = 'Mirtha'; // Simular usuario logueado
+        document.getElementById('nombre-usuario').textContent = 'Mirtha';
     } else {
         infoReserva.classList.add('d-none');
     }
-
-    // Mostrar detalle y ocultar selección
-    document.getElementById('seleccion-vuelo').classList.add('d-none');
-    document.getElementById('detalle-vuelo').classList.remove('d-none');
-}
-
-function volverABusqueda() {
-    document.getElementById('detalle-vuelo').classList.add('d-none');
-    document.getElementById('seleccion-vuelo').classList.remove('d-none');
 }
