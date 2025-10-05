@@ -20,7 +20,107 @@
 
 <body>
     <header id="header" class="flex flex-col px-4 py-2 text-white w-[100vw] bg-[var(--azul-oscuro)]"></header>
-    <h1>Crear ruta de vuelo</h1>
+
+
+    <main class="flex flex-col items-center  p-4 bg-[var(--gris-claro)]">
+        <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+            <h2 class="mb-6 text-2xl font-bold text-center text-[var(--azul-oscuro)]">Crear Nueva Ruta de Vuelo</h2>
+            <form action="/ruta-de-vuelo/crear" method="POST" class="space-y-4">
+                <div>
+                    <label for="nombre" class="block mb-2 font-medium text-gray-700">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--azul-oscuro)]">
+                </div>
+
+                <div>
+                    <label for="descripcion" class="block mb-2 font-medium text-gray-700">Descripción</label>
+                    <textarea id="descripcion" name="descripcion" rows="4" required style="resize: none;"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--azul-oscuro)]"></textarea>
+                </div>
+                <div>
+                    <label for="duracion" class="block mb-2 font-medium text-gray-700">Duración (minutos)</label>
+                    <input type="number" id="duracion" name="duracion" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--azul-oscuro)]">
+                </div>
+                <div>
+                    <label for="costoTurista" class="block mb-2 font-medium text-gray-700">Costo Turista</label>
+                    <input type="number" id="costoTurista" name="costoTurista" step="0.01" required min="1"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--azul-oscuro)]">
+                </div>
+                <div>
+                    <label for="costoEjecutivo" class="block mb-2 font-medium text-gray-700">Costo Ejecutivo</label>
+                    <input type="number" id="costoEjecutivo" name="costoEjecutivo" step="0.01" required min="1"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--azul-oscuro)]">
+                </div>
+                <div
+                    class="flex w-[90%] md:w-2/3 items-center border-b border-gray-300 py-2 space-x-3 focus-within:border-[var(--azul-oscuro)]">
+                    <i class="fa fa-image icon text-[var(--azul-oscuro)]"></i>
+                    <label for="image" class="flex-grow text-gray-500 cursor-pointer">
+                        <span id="file-name" class="block">Seleccione una imagen</span>
+                        <input type="file" id="image" accept="image/*" class="hidden">
+                    </label>
+                </div>
+
+                <script>
+                    const fileInput = document.getElementById('image');
+                    const fileNameSpan = document.getElementById('file-name');
+
+                    fileInput.addEventListener('change', () => {
+                        if (fileInput.files.length > 0) {
+                            fileNameSpan.textContent = fileInput.files[0].name;
+                        } else {
+                            fileNameSpan.textContent = 'Seleccione una foto de perfil';
+                        }
+                    });
+                </script>
+                <div>
+                    <label for="estado" class="block mb-2 font-medium text-gray-700">Estado</label>
+                    <select id="estado" name="estado" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--azul-oscuro)]">
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="categorias" class="block mb-2 font-medium text-gray-700">Categorías</label>
+                    <select id="categorias" name="categorias" multiple required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--azul-oscuro)]">
+                        <!-- Opciones de categorías -->
+                        <option value="aventura">Aventura</option>
+                        <option value="negocios">Negocios</option>
+                        <option value="familiar">Familiar</option>
+                        <option value="lujo">Lujo</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="origen" class="block mb-2 font-medium text-gray-700">Origen</label>
+                    <select id="origen" name="origen" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--azul-oscuro)]">
+                        <option value="Ciudad A">Ciudad A</option>
+                        <option value="Ciudad B">Ciudad B</option>
+                        <option value="Ciudad C">Ciudad C</option>
+                        <option value="Ciudad D">Ciudad D</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="destino" class="block mb-2 font-medium text-gray-700">Destino</label>
+                    <select id="destino" name="destino" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--azul-oscuro)]">
+                        <option value="Ciudad A">Ciudad A</option>
+                        <option value="Ciudad B">Ciudad B</option>
+                        <option value="Ciudad C">Ciudad C</option>
+                        <option value="Ciudad D">Ciudad D</option>
+                    </select>
+                </div>
+
+                <button type="submit"
+                    class="w-full px-4 py-2 font-bold text-white bg-[var(--azul-oscuro)] rounded-md hover:bg-[var(--azul-medio)] focus:outline-none focus:ring-2 focus:ring-[var(--azul-claro)]">
+                    Crear Ruta de Vuelo
+                </button>
+            </form>
+        </div>
+    </main>
 </body>
 
 </html>
