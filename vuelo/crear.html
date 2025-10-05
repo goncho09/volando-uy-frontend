@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear vuelo</title>
+    <title>Crear Vuelo - Volando.uy</title>
 
     <!-- Librerias Header -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -15,12 +15,177 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <script src="../header/header.js" defer></script>
+    <script src="crear-vuelo.js" defer></script>
     <link rel="stylesheet" href="../styles/globals.css">
 </head>
 
 <body>
     <header id="header" class="flex flex-col px-4 py-2 text-white w-[100vw] bg-[var(--azul-oscuro)]"></header>
-    <h1>Crear vuelo</h1>
+
+    <main class="container my-5">
+        <div class="row">
+            <!-- Barra lateral -->
+            <aside class="col-md-3 mb-4">
+                <div class="card mb-3 shadow">
+                    <p class="card-header fw-bold">MI PERFIL</p>
+                    <div class="card-body p-3">
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="../perfil/perfil.html" class="text-decoration-none">Mi Perfil</a></li>
+                            <li><a href="../consulta-vuelo/consulta-vuelo.html" class="text-decoration-none">Consultar Vuelos</a></li>
+                            <li><a href="../ruta-de-vuelo/crear-ruta.html" class="text-decoration-none">Crear Ruta</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card shadow">
+                    <div class="card-header fw-bold">CATEGORÍAS</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">Nacionales</a></li>
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">Internacionales</a></li>
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">Europa</a></li>
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">América</a></li>
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">Exclusivos</a></li>
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">Temporada</a></li>
+                        <li class="list-group-item"><a href="#" class="text-decoration-none">Cortos</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Contenido principal -->
+            <div class="col-md-9">
+                <div class="card mb-4 border-0 shadow">
+                    <div class="card-header fw-bold">
+                        <h4 class="mb-0">Crear Nuevo Vuelo</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="form-crear-vuelo">
+                            <!-- Selección de Ruta -->
+                            <div class="mb-4">
+                                <h5 class="mb-3">Selecciona una Ruta</h5>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <label for="select-ruta" class="form-label fw-bold">Ruta de Vuelo</label>
+                                        <select class="form-select" id="select-ruta" required>
+                                            <option value="">Selecciona una de tus rutas</option>
+                                        </select>
+                                        <div class="form-text">Solo se muestran tus rutas en estado "Confirmada"</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Información de la Ruta -->
+                            <div id="info-ruta" class="card mb-4 bg-light d-none">
+                                <div class="card-body">
+                                    <h6 class="card-title">Ruta Seleccionada</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p><strong>Nombre:</strong> <span id="ruta-nombre"></span></p>
+                                            <p><strong>Código:</strong> <span id="ruta-codigo"></span></p>
+                                            <p><strong>Origen:</strong> <span id="ruta-origen"></span></p>
+                                            <p><strong>Destino:</strong> <span id="ruta-destino"></span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><strong>Hora:</strong> <span id="ruta-hora"></span></p>
+                                            <p><strong>Costo Turista:</strong> <span id="ruta-costo-turista"></span></p>
+                                            <p><strong>Costo Ejecutivo:</strong> <span id="ruta-costo-ejecutivo"></span></p>
+                                            <p><strong>Estado:</strong> <span id="ruta-estado"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Datos del Vuelo -->
+                            <div class="mb-4">
+                                <h5 class="mb-3">Datos del Vuelo</h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="nombre-vuelo" class="form-label fw-bold">Nombre del Vuelo</label>
+                                        <input type="text" class="form-control" id="nombre-vuelo" 
+                                               placeholder="Ej: ZL1502001" required>
+                                        <div class="form-text">Debe ser único en la plataforma</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="fecha-vuelo" class="form-label fw-bold">Fecha del Vuelo</label>
+                                        <input type="date" class="form-control" id="fecha-vuelo" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="duracion-vuelo" class="form-label fw-bold">Duración</label>
+                                        <input type="text" class="form-control" id="duracion-vuelo" 
+                                               placeholder="Ej: 2h 30min" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="hora-vuelo" class="form-label fw-bold">Hora de Salida</label>
+                                        <input type="time" class="form-control" id="hora-vuelo" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="asientos-turista" class="form-label fw-bold">Asientos Turista</label>
+                                        <input type="number" class="form-control" id="asientos-turista" 
+                                               min="1" max="500" value="150" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="asientos-ejecutivo" class="form-label fw-bold">Asientos Ejecutivo</label>
+                                        <input type="number" class="form-control" id="asientos-ejecutivo" 
+                                               min="1" max="100" value="30" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Imagen del Vuelo -->
+                            <div class="mb-4">
+                                <h5 class="mb-3">Imagen del Vuelo</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="imagen-vuelo" class="form-label fw-bold">Subir Imagen</label>
+                                        <input type="file" class="form-control" id="imagen-vuelo" 
+                                               accept="image/*">
+                                        <div class="form-text">Formatos aceptados: JPG, PNG, GIF (Opcional)</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div id="vista-previa" class="mt-2 d-none">
+                                            <p class="form-label fw-bold">Vista Previa:</p>
+                                            <img id="preview-imagen" class="img-fluid rounded" 
+                                                 style="max-height: 150px; object-fit: cover;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Resumen -->
+                            <div class="mb-4 p-3 bg-light rounded">
+                                <h5 class="mb-3">Resumen del Vuelo</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>Ruta:</strong> <span id="resumen-ruta">-</span></p>
+                                        <p><strong>Nombre del Vuelo:</strong> <span id="resumen-nombre">-</span></p>
+                                        <p><strong>Fecha:</strong> <span id="resumen-fecha">-</span></p>
+                                        <p><strong>Hora:</strong> <span id="resumen-hora">-</span></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Duración:</strong> <span id="resumen-duracion">-</span></p>
+                                        <p><strong>Asientos Turista:</strong> <span id="resumen-turista">-</span></p>
+                                        <p><strong>Asientos Ejecutivo:</strong> <span id="resumen-ejecutivo">-</span></p>
+                                        <p><strong>Total Asientos:</strong> <span id="resumen-total">-</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-outline-secondary" 
+                                        onclick="window.location.href='../consulta-vuelo/consulta-vuelo.html'">
+                                    ← Cancelar
+                                </button>
+                                <button type="submit" class="btn btn-primary" 
+                                        style="background-color: var(--azul-oscuro); border-color: var(--azul-oscuro);">
+                                    <i class="fas fa-plane me-2"></i>Crear Vuelo
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
 </body>
 
 </html>

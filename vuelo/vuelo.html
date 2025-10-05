@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Vuelo</title>
+    <title>Consulta de Vuelo - Volando.uy</title>
 
     <!-- Librerias Header -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -51,53 +51,59 @@
             </aside>
 
             <div class="col-md-9">
-                <!-- Selección de vuelo -->
-                <div id="seleccion-vuelo">
-                    <div class="card mb-4 border-0 shadow">
-                        <div class="card-header fw-bold">
-                            <h4 class="mb-0">Consulta de Vuelo</h4>
-                        </div>
-                        <div class="card-body p-4">
-                            <div class="row g-3 align-items-end">
-                                <div class="col-md-4">
-                                    <label class="form-label fw-bold">Aerolínea</label>
-                                    <select class="form-select" id="select-aerolinea">
-                                        <option value="">Selecciona una aerolínea</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label fw-bold">Ruta</label>
-                                    <select class="form-select" id="select-ruta" disabled>
-                                        <option value="">Primero selecciona aerolínea</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary w-100" id="btn-buscar" disabled style="background-color: var(--azul-oscuro); border-color: var(--azul-oscuro);">
-                                        <i class="fas fa-search me-2"></i>Buscar Vuelos
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Búsqueda -->
+                <div class="card mb-4 border-0 shadow">
+                    <div class="card-header fw-bold">
+                        <h4 class="mb-0">Consulta de Vuelo</h4>
                     </div>
-
-                    <!-- Resultados de búsqueda -->
-                    <div id="resultados-vuelos" class="d-none">
-                        <div class="card border-0 shadow">
-                            <div class="card-header fw-bold">
-                                <h5 class="mb-0">Vuelos Disponibles</h5>
+                    <div class="card-body p-4">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">Aerolínea</label>
+                                <select class="form-select" id="select-aerolinea">
+                                    <option value="">Selecciona una aerolínea</option>
+                                </select>
                             </div>
-                            <div class="card-body p-0">
-                                <div id="lista-vuelos">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">Ruta</label>
+                                <select class="form-select" id="select-ruta" disabled>
+                                    <option value="">Primero selecciona aerolínea</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-primary w-100" id="btn-buscar" disabled style="background-color: var(--azul-oscuro); border-color: var(--azul-oscuro);">
+                                    <i class="fas fa-search me-2"></i>Buscar Vuelos
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Detalles del vuelo seleccionado -->
-                <div id="detalle-vuelo" class="d-none">
+                <div id="mensaje-inicial" class="card border-0 shadow">
+                    <div class="card-body text-center py-5">
+                        <i class="fas fa-plane fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">Consulta de Vuelos</h5>
+                        <p class="text-muted">Selecciona una aerolínea y una ruta para buscar vuelos disponibles</p>
+                    </div>
+                </div>
+
+                <div id="lista-vuelos-container" class="d-none">
+                    <div class="card border-0 shadow">
+                        <div class="card-header fw-bold">
+                            <h5 class="mb-0" id="titulo-lista-vuelos">Vuelos Disponibles</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div id="lista-vuelos">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detalles del vuelo -->
+                <div id="detalle-vuelo-container" class="d-none">
                     <div class="d-flex gap-2 mb-3">
-                        <button type="button" class="btn btn-outline-secondary" onclick="volverABusqueda()">
-                            ← Volver a la búsqueda
+                        <button type="button" class="btn btn-outline-secondary" id="btn-volver-lista">
+                            ← Volver a la lista
                         </button>
                     </div>
 
@@ -128,9 +134,9 @@
 
                                 <!-- Si el usuario tiene reserva -->
                                 <div id="info-reserva" class="mt-3 p-3 bg-light rounded d-none">
-                                    <p class="mb-2 text-center">Ya tienes una reserva para este vuelo, <span id="nombre-usuario"></span></p>
-                                    <button type="button" class="btn btn-primary" onclick="window.location.href='../reservas/reservas.html'">Ver reserva</button>
-                                </div>
+             <p class="mb-2 text-center">Ya tienes una reserva para este vuelo, <span id="nombre-usuario"></span></p>
+    <button type="button" class="btn btn-primary" onclick="window.location.href='../reservas/consultar-reservas.html'" style="background-color: var(--azul-oscuro); border-color: var(--azul-oscuro);">Ver reserva</button>
+</div>
                             </div>
                         </div>
                     </div>
@@ -150,8 +156,7 @@
                                     <p><strong>Equipaje extra:</strong> <span id="ruta-equipaje"></span></p>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" onclick="window.location.href='../ruta-de-vuelo/ruta-de-vuelo.html'">Ver detalles de la ruta</button>
-                        </div>
+<button type="button" class="btn btn-primary mt-2" onclick="window.location.href='../ruta-de-vuelo/ruta-de-vuelo.html'" style="background-color: var(--azul-oscuro); border-color: var(--azul-oscuro);">Ver detalles de la ruta</button>                        </div>
                     </div>
                 </div>
             </div>
